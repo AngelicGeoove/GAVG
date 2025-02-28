@@ -1235,24 +1235,7 @@
 
             // Restart survey button
             restartBtn.addEventListener('click', function () {
-                // Reset form
-                form.reset();
-                form.style.display = 'block';
-                document.querySelector('.survey-header').style.display = 'block';
-                document.querySelector('.progress-bar').parentElement.style.display = 'block';
-                thankYouScreen.style.display = 'none';
-
-                // Reset to first question
-                document.querySelector(`.question-container.active`).classList.remove('active');
-                currentQuestion = 1;
-                document.querySelector(`.question-container[data-question="${currentQuestion}"]`).classList.add('active');
-
-                // Reset progress
-                updateProgress();
-
-                // Hide the conditional containers
-                localGamesContainer.style.display = 'none';
-                communityContainer.style.display = 'none';
+                window.location.href = 'portfolio.html'; // Load portfolio.html
             });
         });
     </script>
