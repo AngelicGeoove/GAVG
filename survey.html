@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: 
+    https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com 
+    https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com 
+    https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com 
+    https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com 
+    https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com 
+    https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com 
+    https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org 
+    https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com 
+    https://*.gstatic.com https://*.firebaseio.com https://*.firebase.com 
+    https://*.googleapis.com https://*.googletagmanager.com; 
+
+    connect-src 'self' https://*.firebaseio.com https://*.firebase.com https://*.googleapis.com 
+    https://ghana-and-video-games-survey-default-rtdb.europe-west1.firebasedatabase.app 
+    https://s-euw1c-nss-2200.europe-west1.firebasedatabase.app 
+    https://*.google-analytics.com 
+    wss://*.firebaseio.com wss://s-euw1c-nss-2200.europe-west1.firebasedatabase.app 
+    https://script.google.com https://script.googleapis.com;
+
+    script-src-elem 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.gstatic.com 
+    https://*.firebase.com https://*.googleapis.com https://cdnjs.cloudflare.com 
+    https://ghana-and-video-games-survey-default-rtdb.europe-west1.firebasedatabase.app 
+    https://s-euw1c-nss-2200.europe-west1.firebasedatabase.app; 
+
+    frame-src 'self' https://www.youtube.com https://trytako.com 
+    https://s-euw1c-nss-2200.europe-west1.firebasedatabase.app; 
+
+    child-src 'self'; 
+    manifest-src 'self'; 
+    worker-src 'self'; 
+    upgrade-insecure-requests; 
+    block-all-mixed-content;">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghana And Video Games</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.css" rel="stylesheet">
+    <style>
+        /* Theme variables */
+        :root {
+            --ghana-red: #CE1126;
+            --ghana-yellow: #FCD116;
+            --ghana-green: #006B3F;
+            --ghana-black: #000000;
+            --ghana-white: #FFFFFF;
+
+            /* Light theme colors */
+            --background-primary: #f8f9fa;
+            --background-secondary: #ffffff;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --border-color: #e2e8f0;
+            --input-background: #ffffff;
+            --input-text: #2d3748;
+        }
+
+        /* Dark theme colors */
+        [data-theme="dark"] {
+            --background-primary: #1a202c;
+            --background-secondary: #2d3748;
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
+            --border-color: #4a5568;
+            --input-background: #2d3748;
+            --input-text: #ffffff;
+        }
+
+        /* Global styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .ghana-flag-border {
+            border-top: 4px solid var(--ghana-red);
+            border-right: 4px solid var(--ghana-yellow);
+            border-bottom: 4px solid var(--ghana-green);
+            border-left: 4px solid var(--ghana-yellow);
+            border-radius: 8px;
+        }
+
+        .ghana-btn {
+            background-color: var(--ghana-green);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .ghana-btn:hover {
+            background-color: var(--ghana-red);
+            transform: translateY(-2px);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--ghana-red), var(--ghana-yellow), var(--ghana-green));
+            transition: width 0.5s ease-in-out;
+        }
+
+        .question-container {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .question-container.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .black-star {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            margin: 15px;
+            background-image: url(Logo\ Coin.png);
+            /* Replace with your image path */
+            background-size: cover;
+        }
+
+        /* Theme toggle button styles */
+        #theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background-color: var(--background-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #theme-toggle:hover {
+            background-color: var(--background-primary);
+            transform: translateY(-1px);
+        }
+
+        #theme-toggle svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        /* Survey card styles */
+        .survey-card {
+            background-color: var(--background-secondary);
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Form elements */
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            background-color: var(--input-background);
+            color: var(--input-text);
+            border-color: var(--border-color);
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Text elements */
+        label,
+        p,
+        h1,
+        h2,
+        h3,
+        li {
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        /* Custom radio and checkbox styling */
+        .custom-radio input,
+        .custom-checkbox input {
+            display: none;
+        }
+
+        .custom-radio label,
+        .custom-checkbox label {
+            display: block;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            background-color: var(--background-secondary);
+        }
+
+        .custom-radio input:checked+label,
+        .custom-checkbox input:checked+label {
+            border-color: var(--ghana-green);
+            background-color: rgba(0, 107, 63, 0.1);
+        }
+
+        [data-theme="dark"] .custom-radio label,
+        [data-theme="dark"] .custom-checkbox label {
+            border-color: var(--border-color);
+            color: var(--text-secondary);
+            background-color: var(--background-primary);
+        }
+
+        [data-theme="dark"] .custom-radio label:hover,
+        [data-theme="dark"] .custom-checkbox label:hover {
+            background-color: var(--background-secondary);
+            border-color: var(--ghana-green);
+        }
+
+        [data-theme="dark"] .custom-radio input:checked+label,
+        [data-theme="dark"] .custom-checkbox input:checked+label {
+            background-color: rgba(0, 107, 63, 0.3);
+            border-color: var(--ghana-green);
+            color: var(--text-primary);
+        }
+
+        /* Progress bar dark mode */
+        [data-theme="dark"] .progress-bar {
+            background-color: #f4f4f4;
+        }
+
+        /* Survey card dark mode */
+        [data-theme="dark"] .survey-card {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Thank you screen dark mode */
+        [data-theme="dark"] .thank-you-container {
+            color: var(--text-primary);
+        }
+
+        .thank-you-container {
+            display: none;
+            text-align: center;
+        }
+
+        .ghana-flag-animation {
+            width: 100px;
+            height: 60px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flag-stripe {
+            width: 100%;
+            height: 20px;
+        }
+
+        .red-stripe {
+            background-color: var(--ghana-red);
+        }
+
+        .yellow-stripe {
+            background-color: var(--ghana-yellow);
+            position: relative;
+        }
+
+        .black-star-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 32px;
+            height: 32px;
+            background-color: var(--ghana-black);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            z-index: 1;
+            /* Double outline effect for better visibility */
+            filter:
+                drop-shadow(0 0 1px white) drop-shadow(0 0 1px white) drop-shadow(0 0 2px rgba(0, 0, 0, 0.8));
+        }
+
+        .green-stripe {
+            background-color: var(--ghana-green);
+        }
+
+        .black-star-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background: var(--background-secondary);
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .sidebar .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar .nav-links li {
+            margin: 1rem 0;
+        }
+
+        .sidebar .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+            padding: 1rem 1.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar .nav-links a:hover {
+            background: var(--background-primary);
+        }
+
+        .menu-btn {
+            display: block;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1001;
+        }
+
+        .menu-btn:hover {
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen py-10 px-4 sm:px-6">
+    <div class="sidebar">
+        <div class="logo">GAVG</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="roadmap.html">Roadmap</a></li>
+            <li><a href="other-games.html">Other Games</a></li>
+        </ul>
+    </div>
+    <div class="menu-btn">☰</div>
+    <div class="max-w-3xl mx-auto">
+        <div
+            class="survey-card ghana-flag-border bg-white dark:bg-gray-500 shadow-lg rounded-lg overflow-hidden p-6 relative">
+            <!-- Image instead of black star -->
+            <div class="black-star"></div>
+
+            <div class="survey-header mb-8">
+                <h1 class="text-2xl sm:text-3xl font-bold text-center mb-2 dark:text-white">Video Games
+                    And Ghana Survey</h1>
+                <p class="text-center dark:text-gray-300">Share your thoughts on video Games and Game
+                    Development
+                    in Ghana</p>
+            </div>
+
+            <!-- Dark/Light Mode Toggle Button -->
+            <button id="theme-toggle" class="mb-4 flex items-center justify-center">
+                <!-- Sun icon -->
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <!-- Moon icon -->
+                <svg class="moon-icon hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+                <span class="ml-2">Switch Theme</span>
+            </button>
+
+            <!-- Progress Bar -->
+            <div class="mb-8 progress-container" style="display: none;">
+                <div class="flex justify-between text-sm mb-1">
+                    <span class="dark:text-gray-300">Progress</span>
+                    <span id="progress-text" class="dark:text-gray-300">1/15</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill" style="width: 6.66%;"></div>
+                </div>
+            </div>
+
+            <!-- Introduction Screen -->
+            <div class="intro-container" id="intro-screen">
+                <div class="ghana-flag-animation mb-6">
+                    <div class="flag-stripe red-stripe"></div>
+                    <div class="flag-stripe yellow-stripe">
+                        <div class="black-star-center"></div>
+                    </div>
+                    <div class="flag-stripe green-stripe"></div>
+                </div>
+                <h2 class="text-2xl font-bold mb-4 dark:text-gray-100">Welcome to the Ghana Video Game
+                    Survey!
+                </h2>
+                <div class="text-gray-600 dark:text-gray-300 mb-6 space-y-4">
+                    <p>Thank you for participating in this important survey about video Games and Game Development in
+                        Ghana. Your
+                        responses will help us understand the current state of gaming in our country and identify
+                        opportunities for
+                        growth.</p>
+
+                    <p>This survey aims to:</p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Understand the gaming habits and preferences of Ghanaians</li>
+                        <li>Assess awareness of locally developed Games</li>
+                        <li>Identify cultural elements that could be incorporated into Ghanaian Games</li>
+                        <li>Gather insights on how to grow the Game Development industry in Ghana</li>
+                    </ul>
+
+                    <p>The survey takes approximately 2-5 minutes to complete. Your responses are anonymous and will be
+                        used for
+                        research purposes only.</p>
+                </div>
+                <div class="flex flex-col space-y-4 items-center">
+                    <button type="button" id="start-survey-btn"
+                        class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md w-48">Start
+                        Survey</button>
+                </div>
+            </div>
+
+            <form id="survey-form" style="display: none;">
+                <!-- Question 1 -->
+                <div class="question-container active" data-question="1">
+                    <h2 class="text-xl font-semibold mb-4 dark:text-gray-100">About You</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="age" class="block mb-2 text-sm font-medium  dark:text-gray-300">Age</label>
+                            <input type="number" id="age" name="age" min="10" max="100"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                                required="">
+                        </div>
+                        <div>
+                            <label for="gender" class="block mb-2 text-sm font-medium dark:text-gray-300">Gender</label>
+                            <select id="gender" name="gender"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                                required="">
+                                <option value="" disabled="" selected="">Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="non-binary">Non-binary</option>
+                                <option value="prefer-not-to-say">Prefer not to say</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="region" class="block mb-2 text-sm font-medium  dark:text-gray-300">Which region of
+                            Ghana do you live in?</label>
+                        <select id="region" name="region"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                            required="">
+                            <option value="" disabled="" selected="">Select region</option>
+                            <option value="Greater Accra">Greater Accra</option>
+                            <option value="Ashanti">Ashanti</option>
+                            <option value="Western">Western</option>
+                            <option value="Eastern">Eastern</option>
+                            <option value="Central">Central</option>
+                            <option value="Volta">Volta</option>
+                            <option value="Northern">Northern</option>
+                            <option value="Upper East">Upper East</option>
+                            <option value="Upper West">Upper West</option>
+                            <option value="Bono">Bono</option>
+                            <option value="Bono East">Bono East</option>
+                            <option value="Ahafo">Ahafo</option>
+                            <option value="Western North">Western North</option>
+                            <option value="Savannah">Savannah</option>
+                            <option value="North East">North East</option>
+                            <option value="Oti">Oti</option>
+                        </select>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question-container" data-question="2">
+                    <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Gaming Experience</h2>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">How often do you play
+                            video
+                            Games?</p>
+                        <div class="custom-radio">
+                            <input type="radio" id="gaming-frequency-daily" name="gaming-frequency" value="daily"
+                                required="">
+                            <label for="gaming-frequency-daily">Daily</label>
+
+                            <input type="radio" id="gaming-frequency-weekly" name="gaming-frequency" value="weekly">
+                            <label for="gaming-frequency-weekly">Several times a week</label>
+
+                            <input type="radio" id="gaming-frequency-monthly" name="gaming-frequency" value="monthly">
+                            <label for="gaming-frequency-monthly">A few times a month</label>
+
+                            <input type="radio" id="gaming-frequency-rarely" name="gaming-frequency" value="rarely">
+                            <label for="gaming-frequency-rarely">Rarely</label>
+
+                            <input type="radio" id="gaming-frequency-never" name="gaming-frequency" value="never">
+                            <label for="gaming-frequency-never">Never</label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md prev-btn">Previous</button>
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question-container" data-question="3">
+                    <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Gaming Devices</h2>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">Which devices do you
+                            use to play
+                            video Games? (Select all that apply)</p>
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="device-mobile" name="gaming-devices" value="mobile">
+                            <label for="device-mobile">Mobile Phone</label>
+
+                            <input type="checkbox" id="device-console" name="gaming-devices" value="console">
+                            <label for="device-console">Gaming Console (PlayStation, Xbox, etc.)</label>
+
+                            <input type="checkbox" id="device-pc" name="gaming-devices" value="pc">
+                            <label for="device-pc">PC/Computer</label>
+
+                            <input type="checkbox" id="device-tablet" name="gaming-devices" value="tablet">
+                            <label for="device-tablet">Tablet</label>
+
+                            <input type="checkbox" id="device-other" name="gaming-devices" value="other">
+                            <label for="device-other">Other</label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md prev-btn">Previous</button>
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question-container" data-question="4">
+                    <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Game Genres</h2>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">What types of Games
+                            do you enjoy
+                            playing? (Select all that apply)</p>
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="genre-action" name="Game-genres" value="action">
+                            <label for="genre-action">Action/Adventure</label>
+
+                            <input type="checkbox" id="genre-sports" name="Game-genres" value="sports">
+                            <label for="genre-sports">Sports</label>
+
+                            <input type="checkbox" id="genre-strategy" name="Game-genres" value="strategy">
+                            <label for="genre-strategy">Strategy</label>
+
+                            <input type="checkbox" id="genre-rpg" name="Game-genres" value="rpg">
+                            <label for="genre-rpg">Role-Playing Games (RPGs)</label>
+
+                            <input type="checkbox" id="genre-simulation" name="Game-genres" value="simulation">
+                            <label for="genre-simulation">Simulation</label>
+
+                            <input type="checkbox" id="genre-puzzle" name="Game-genres" value="puzzle">
+                            <label for="genre-puzzle">Puzzle</label>
+
+                            <input type="checkbox" id="genre-educational" name="Game-genres" value="educational">
+                            <label for="genre-educational">Educational</label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md prev-btn">Previous</button>
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question-container" data-question="5">
+                    <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Local Game Development</h2>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">Are you aware of any
+                            video Games
+                            developed in Ghana?</p>
+                        <div class="custom-radio">
+                            <input type="radio" id="local-Games-yes" name="local-Games-awareness" value="yes"
+                                required="">
+                            <label for="local-Games-yes">Yes</label>
+
+                            <input type="radio" id="local-Games-no" name="local-Games-awareness" value="no">
+                            <label for="local-Games-no">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-6 local-Games-container" style="display: none;">
+                        <label for="local-Games" class="block mb-2 text-sm font-medium  dark:text-gray-300">If yes,
+                            please name the Ghanaian Games you know:</label>
+                        <textarea id="local-Games" name="local-Games" rows="3"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"></textarea>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md prev-btn">Previous</button>
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="question-container" data-question="6">
+                    <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Interest in Local Games</h2>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">How interested would
+                            you be in
+                            playing video Games developed in Ghana?</p>
+                        <div class="custom-radio">
+                            <input type="radio" id="interest-very" name="local-Games-interest" value="very-interested"
+                                required="">
+                            <label for="interest-very">Very interested</label>
+
+                            <input type="radio" id="interest-somewhat" name="local-Games-interest"
+                                value="somewhat-interested">
+                            <label for="interest-somewhat">Somewhat interested</label>
+
+                            <input type="radio" id="interest-neutral" name="local-Games-interest" value="neutral">
+                            <label for="interest-neutral">Neutral</label>
+
+                            <input type="radio" id="interest-not-very" name="local-Games-interest"
+                                value="not-very-interested">
+                            <label for="interest-not-very">Not very interested</label>
+
+                            <input type="radio" id="interest-not-at-all" name="local-Games-interest"
+                                value="not-interested">
+                            <label for="interest-not-at-all">Not interested at all</label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md prev-btn">Previous</button>
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="question-container" data-question="7">
+                    <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Ghanaian Game Features</h2>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">Which Ghanaian
+                            cultural elements
+                            would you like to see in locally developed Games? (Select all that apply)</p>
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="culture-history" name="cultural-elements" value="history">
+                            <label for="culture-history">Ghanaian history and folklore</label>
+
+                            <input type="checkbox" id="culture-music" name="cultural-elements" value="music">
+                            <label for="culture-music">Traditional music and dance</label>
+
+                            <input type="checkbox" id="culture-art" name="cultural-elements" value="art">
+                            <label for="culture-art">Ghanaian art and symbols</label>
+
+                            <input type="checkbox" id="culture-locations" name="cultural-elements" value="locations">
+                            <label for="culture-locations">Local landmarks and locations</label>
+
+                            <input type="checkbox" id="culture-languages" name="cultural-elements" value="languages">
+                            <label for="culture-languages">Local languages</label>
+
+                            <input type="checkbox" id="culture-cuisine" name="cultural-elements" value="cuisine">
+                            <label for="culture-cuisine">Ghanaian cuisine</label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md prev-btn">Previous</button>
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 8 -->
+                <div class="question-container" data-question="8">
+                    <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Game Development Interest
+                    </h2>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">Are you interested in
+                            learning
+                            about video Game Development?</p>
+                        <div class="custom-radio">
+                            <input type="radio" id="dev-interest-yes" name="dev-interest" value="yes" required="">
+                            <label for="dev-interest-yes">Yes</label>
+
+                            <input type="radio" id="dev-interest-maybe" name="dev-interest" value="maybe">
+                            <label for="dev-interest-maybe">Maybe</label>
+
+                            <input type="radio" id="dev-interest-no" name="dev-interest" value="no">
+                            <label for="dev-interest-no">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">Which aspects of Game
+                            Development
+                            interest you? (Select all that apply)</p>
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="dev-programming" name="dev-aspects" value="programming">
+                            <label for="dev-programming">Programming</label>
+
+                            <input type="checkbox" id="dev-art" name="dev-aspects" value="art">
+                            <label for="dev-art">Art and Animation</label>
+
+                            <input type="checkbox" id="dev-design" name="dev-aspects" value="design">
+                            <label for="dev-design">Game Design</label>
+
+                            <input type="checkbox" id="dev-music" name="dev-aspects" value="music">
+                            <label for="dev-music">Music and Sound Effects</label>
+
+                            <input type="checkbox" id="dev-writing" name="dev-aspects" value="writing">
+                            <label for="dev-writing">Storytelling and Writing</label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md prev-btn">Previous</button>
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 9 -->
+                <div class="question-container" data-question="9">
+                    <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Industry Growth</h2>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">What do you think is
+                            needed to
+                            grow the video Game industry in Ghana? (Select up to 3)</p>
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="growth-education" name="industry-growth" value="education"
+                                class="max-3-select">
+                            <label for="growth-education">Better education and training programs</label>
+
+                            <input type="checkbox" id="growth-funding" name="industry-growth" value="funding"
+                                class="max-3-select">
+                            <label for="growth-funding">More funding and investment</label>
+
+                            <input type="checkbox" id="growth-infrastructure" name="industry-growth"
+                                value="infrastructure" class="max-3-select">
+                            <label for="growth-infrastructure">Improved technology infrastructure</label>
+
+                            <input type="checkbox" id="growth-awareness" name="industry-growth" value="awareness"
+                                class="max-3-select">
+                            <label for="growth-awareness">Increased public awareness</label>
+
+                            <input type="checkbox" id="growth-community" name="industry-growth" value="community"
+                                class="max-3-select">
+                            <label for="growth-community">Stronger developer community</label>
+
+                            <input type="checkbox" id="growth-policy" name="industry-growth" value="policy"
+                                class="max-3-select">
+                            <label for="growth-policy">Government policies and support</label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md prev-btn">Previous</button>
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 10 -->
+                <div class="question-container" data-question="10">
+                    <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Gaming Budget</h2>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">How much do you spend
+                            on gaming
+                            (Games, subscriptions, in-app purchases, etc.) per month?</p>
+                        <div class="custom-radio">
+                            <input type="radio" id="budget-none" name="gaming-budget" value="none" required="">
+                            <label for="budget-none">Nothing, I only play free Games</label>
+
+                            <input type="radio" id="budget-under-10" name="gaming-budget" value="under-10">
+                            <label for="budget-under-10">Under GHS 10 per month</label>
+
+                            <input type="radio" id="budget-10-50" name="gaming-budget" value="10-50">
+                            <label for="budget-10-50">GHS 10-50 per month</label>
+
+                            <input type="radio" id="budget-50-100" name="gaming-budget" value="50-100">
+                            <label for="budget-50-100">GHS 50-100 per month</label>
+
+                            <input type="radio" id="budget-100-plus" name="gaming-budget" value="100-plus">
+                            <label for="budget-100-plus">More than GHS 100 per month</label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md prev-btn">Previous</button>
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 11 -->
+                <div class="question-container" data-question="11">
+                    <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Gaming Communities</h2>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">Are you part of any
+                            gaming
+                            communities or groups in Ghana?</p>
+                        <div class="custom-radio">
+                            <input type="radio" id="community-yes" name="gaming-community" value="yes" required="">
+                            <label for="community-yes">Yes</label>
+
+                            <input type="radio" id="community-no" name="gaming-community" value="no">
+                            <label for="community-no">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-6 community-details-container" style="display: none;">
+                        <label for="community-details" class="block mb-2 text-sm font-medium  dark:text-gray-300">If
+                            yes, please name the communities you're part of:</label>
+                        <textarea id="community-details" name="community-details" rows="2"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"></textarea>
+                    </div>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">Would you be
+                            interested in
+                            joining a Ghanaian Game Development community?</p>
+                        <div class="custom-radio">
+                            <input type="radio" id="join-community-yes" name="join-community" value="yes" required="">
+                            <label for="join-community-yes">Yes</label>
+
+                            <input type="radio" id="join-community-maybe" name="join-community" value="maybe">
+                            <label for="join-community-maybe">Maybe</label>
+
+                            <input type="radio" id="join-community-no" name="join-community" value="no">
+                            <label for="join-community-no">No</label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md prev-btn">Previous</button>
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 12 -->
+                <div class="question-container" data-question="12">
+                    <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Game Accessibility</h2>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">What barriers do you
+                            face in
+                            accessing video Games in Ghana? (Select all that apply)</p>
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="barrier-cost" name="gaming-barriers" value="cost">
+                            <label for="barrier-cost">High cost of Games</label>
+
+                            <input type="checkbox" id="barrier-internet" name="gaming-barriers" value="internet">
+                            <label for="barrier-internet">Internet connectivity issues</label>
+
+                            <input type="checkbox" id="barrier-hardware" name="gaming-barriers" value="hardware">
+                            <label for="barrier-hardware">Lack of gaming hardware/devices</label>
+
+                            <input type="checkbox" id="barrier-electricity" name="gaming-barriers" value="electricity">
+                            <label for="barrier-electricity">Unreliable electricity</label>
+
+                            <input type="checkbox" id="barrier-time" name="gaming-barriers" value="time">
+                            <label for="barrier-time">Limited free time</label>
+
+                            <input type="checkbox" id="barrier-payment" name="gaming-barriers" value="payment">
+                            <label for="barrier-payment">Payment method limitations</label>
+
+                            <input type="checkbox" id="barrier-none" name="gaming-barriers" value="none">
+                            <label for="barrier-none">None</label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md prev-btn">Previous</button>
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 13 -->
+                <div class="question-container" data-question="13">
+                    <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Educational Value</h2>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">Do you believe video
+                            Games can be
+                            valuable educational tools?</p>
+                        <div class="custom-radio">
+                            <input type="radio" id="educational-yes" name="educational-value" value="yes" required="">
+                            <label for="educational-yes">Yes, definitely</label>
+
+                            <input type="radio" id="educational-somewhat" name="educational-value" value="somewhat">
+                            <label for="educational-somewhat">Somewhat</label>
+
+                            <input type="radio" id="educational-no" name="educational-value" value="no">
+                            <label for="educational-no">No</label>
+
+                            <input type="radio" id="educational-unsure" name="educational-value" value="unsure">
+                            <label for="educational-unsure">Not sure</label>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">What subjects do you
+                            think could
+                            benefit most from educational Games in Ghana? (Select up to 3)</p>
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="edu-math" name="educational-subjects" value="math"
+                                class="max-3-select-edu">
+                            <label for="edu-math">Mathematics</label>
+
+                            <input type="checkbox" id="edu-science" name="educational-subjects" value="science"
+                                class="max-3-select-edu">
+                            <label for="edu-science">Science</label>
+
+                            <input type="checkbox" id="edu-language" name="educational-subjects" value="language"
+                                class="max-3-select-edu">
+                            <label for="edu-language">Language and Literacy</label>
+
+                            <input type="checkbox" id="edu-history" name="educational-subjects" value="history"
+                                class="max-3-select-edu">
+                            <label for="edu-history">History and Cultural Studies</label>
+
+                            <input type="checkbox" id="edu-business" name="educational-subjects" value="business"
+                                class="max-3-select-edu">
+                            <label for="edu-business">Business and Entrepreneurship</label>
+
+                            <input type="checkbox" id="edu-tech" name="educational-subjects" value="tech"
+                                class="max-3-select-edu">
+                            <label for="edu-tech">Technology and Programming</label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md prev-btn">Previous</button>
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 14 -->
+                <div class="question-container" data-question="14">
+                    <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Impact on Ghanaian Youth
+                    </h2>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">How do you think a
+                            thriving Game
+                            Development industry could impact youth in Ghana?</p>
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="impact-jobs" name="youth-impact" value="jobs">
+                            <label for="impact-jobs">Create new job opportunities</label>
+
+                            <input type="checkbox" id="impact-tech" name="youth-impact" value="tech-skills">
+                            <label for="impact-tech">Develop technical skills</label>
+
+                            <input type="checkbox" id="impact-creativity" name="youth-impact" value="creativity">
+                            <label for="impact-creativity">Foster creativity and innovation</label>
+
+                            <input type="checkbox" id="impact-entrepreneurship" name="youth-impact"
+                                value="entrepreneurship">
+                            <label for="impact-entrepreneurship">Encourage entrepreneurship</label>
+
+                            <input type="checkbox" id="impact-cultural" name="youth-impact" value="cultural">
+                            <label for="impact-cultural">Strengthen cultural identity</label>
+
+                            <input type="checkbox" id="impact-economy" name="youth-impact" value="economy">
+                            <label for="impact-economy">Contribute to the digital economy</label>
+
+                            <input type="checkbox" id="impact-negative" name="youth-impact" value="negative">
+                            <label for="impact-negative">Could have negative impacts</label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md prev-btn">Previous</button>
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 15 -->
+                <div class="question-container" data-question="15">
+                    <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Additional Comments</h2>
+                    <div class="mb-6">
+                        <label for="comments" class="block mb-2 text-sm font-medium  dark:text-gray-300">Do
+                            you have
+                            any additional thoughts about video Games or Game Development in Ghana?</label>
+                        <textarea id="comments" name="comments" rows="4"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"></textarea>
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block mb-2 text-sm font-medium  dark:text-gray-300">Email
+                            (optional -
+                            if you'd like to be contacted about future gaming initiatives)</label>
+                        <input type="email" id="email" name="email"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md prev-btn">Previous</button>
+                        <button type="submit" id="submit-btn"
+                            class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md">Submit
+                            Survey</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Thank You Screen -->
+            <div class="thank-you-container" id="thank-you-screen">
+                <div class="ghana-flag-animation">
+                    <div class="flag-stripe red-stripe"></div>
+                    <div class="flag-stripe yellow-stripe">
+                        <div class="black-star-center"></div>
+                    </div>
+                    <div class="flag-stripe green-stripe"></div>
+                </div>
+                <h2 class="text-2xl font-bold mb-3  dark:text-gray-100">Thank You!</h2>
+                <p class="text-gray-600 dark:text-gray-300 mb-6">Your response has been recorded. Thank you for
+                    contributing to our survey about video Games and Game Development in Ghana. If you want to join 
+                    me in this journey of raising Video Game potential, you can join my Whatsapp group though my Portfolio
+                    below.>
+                <button type="button" id="restart-btn"
+                    class="ghana-btn px-5 py-2.5 rounded-lg text-sm font-medium shadow-md">Open Portfolio</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
+
+    <script>
+        let firebaseApp;
+        let analytics;
+
+        // Initialize Firebase
+        try {
+            const firebaseConfig = {
+                apiKey: "AIzaSyCAzQ-r7vhCLe70lLMHFVAcRzWE22LmOJA",
+                authDomain: "ghana-and-video-games-survey.firebaseapp.com",
+                databaseURL: "https://ghana-and-video-games-survey-default-rtdb.europe-west1.firebasedatabase.app",
+                projectId: "ghana-and-video-games-survey",
+                storageBucket: "ghana-and-video-games-survey.firebasestorage.app",
+                messagingSenderId: "862837811760",
+                appId: "1:862837811760:web:e0b0687494cd18fb391bf5",
+                measurementId: "G-0WMX9X1L2K"
+            };
+            firebaseApp = firebase.initializeApp(firebaseConfig);
+            analytics = firebase.analytics();
+        } catch (error) {
+            alert('Error initializing Firebase. Some features may not work properly.');
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('survey-form');
+            const introScreen = document.getElementById('intro-screen');
+            const questions = document.querySelectorAll('.question-container');
+            const progressContainer = document.querySelector('.progress-container');
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+            const thankYouScreen = document.getElementById('thank-you-screen');
+            const restartBtn = document.getElementById('restart-btn');
+            const startSurveyBtn = document.getElementById('start-survey-btn');
+            const themeToggle = document.getElementById('theme-toggle');
+            const sunIcon = themeToggle.querySelector('.sun-icon');
+            const moonIcon = themeToggle.querySelector('.moon-icon');
+            const menuBtn = document.querySelector('.menu-btn');
+            const sidebar = document.querySelector('.sidebar');
+
+            let currentQuestion = 1;
+            const totalQuestions = questions.length;
+
+            // Start survey button
+            startSurveyBtn.addEventListener('click', function () {
+                introScreen.style.display = 'none';
+                form.style.display = 'block';
+                progressContainer.style.display = 'block';
+                updateProgress();
+            });
+
+            // Theme management
+            const initializeTheme = () => {
+                try {
+                    // Check if user has a saved theme preference
+                    const savedTheme = localStorage.getItem('theme');
+                    if (savedTheme) {
+                        document.documentElement.setAttribute('data-theme', savedTheme);
+                        updateThemeUI(savedTheme);
+                    } else {
+                        // Check system preference
+                        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                        const initialTheme = prefersDark ? 'dark' : 'light';
+                        document.documentElement.setAttribute('data-theme', initialTheme);
+                        updateThemeUI(initialTheme);
+                    }
+                } catch (error) {
+                    console.error('Error accessing localStorage:', error);
+                }
+            };
+
+            const updateThemeUI = (theme) => {
+                if (theme === 'dark') {
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                    themeToggle.querySelector('span').textContent = 'Switch to Light Mode';
+                } else {
+                    moonIcon.classList.add('hidden');
+                    sunIcon.classList.remove('hidden');
+                    themeToggle.querySelector('span').textContent = 'Switch to Dark Mode';
+                }
+            };
+
+            // Theme toggle functionality
+            themeToggle.addEventListener('click', function () {
+                try {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateThemeUI(newTheme);
+                } catch (error) {
+                    console.error('Error saving theme preference:', error);
+                }
+            });
+
+            // Initialize theme on page load
+            initializeTheme();
+
+            // Show local Games text area if user is aware of local Games
+            const localGamesRadios = document.querySelectorAll('input[name="local-Games-awareness"]');
+            const localGamesContainer = document.querySelector('.local-Games-container');
+
+            localGamesRadios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    localGamesContainer.style.display = this.value === 'yes' ? 'block' : 'none';
+                });
+            });
+
+            // Show gaming communities text area if user is part of communities
+            const communityRadios = document.querySelectorAll('input[name="gaming-community"]');
+            const communityContainer = document.querySelector('.community-details-container');
+
+            communityRadios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    communityContainer.style.display = this.value === 'yes' ? 'block' : 'none';
+                });
+            });
+
+            // Event listeners for max 3 selections in checkboxes
+            const setupMaxSelections = (selector) => {
+                document.querySelectorAll(selector).forEach(checkbox => {
+                    checkbox.addEventListener('change', function () {
+                        const checkedBoxes = document.querySelectorAll(`${selector}:checked`);
+                        if (checkedBoxes.length > 3) {
+                            this.checked = false;
+                            alert('Please select up to 3 options.');
+                        }
+                    });
+                });
+            };
+
+            setupMaxSelections('.max-3-select');
+            setupMaxSelections('.max-3-select-edu');
+
+            // Navigation buttons
+            const nextButtons = document.querySelectorAll('.next-btn');
+            const prevButtons = document.querySelectorAll('.prev-btn');
+
+            nextButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const currentQuestionEl = document.querySelector(`.question-container[data-question="${currentQuestion}"]`);
+                    const requiredInputs = currentQuestionEl.querySelectorAll('input[required], select[required], textarea[required]');
+
+                    if (Array.from(requiredInputs).every(input => {
+                        if (input.type === 'radio') {
+                            return document.querySelector(`input[name="${input.name}"]:checked`);
+                        }
+                        return input.value.trim();
+                    })) {
+                        if (currentQuestion < totalQuestions) {
+                            document.querySelector(`.question-container[data-question="${currentQuestion}"]`).classList.remove('active');
+                            currentQuestion++;
+                            document.querySelector(`.question-container[data-question="${currentQuestion}"]`).classList.add('active');
+                            updateProgress();
+                        }
+                    } else {
+                        Array.from(requiredInputs).find(input => {
+                            if (input.type === 'radio' && !document.querySelector(`input[name="${input.name}"]:checked`)) {
+                                input.focus();
+                                return true;
+                            }
+                            if (!input.value.trim()) {
+                                input.focus();
+                                return true;
+                            }
+                        });
+                    }
+                });
+            });
+
+            prevButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    if (currentQuestion > 1) {
+                        document.querySelector(`.question-container[data-question="${currentQuestion}"]`).classList.remove('active');
+                        currentQuestion--;
+                        document.querySelector(`.question-container[data-question="${currentQuestion}"]`).classList.add('active');
+                        updateProgress();
+                    }
+                });
+            });
+
+            const updateProgress = () => {
+                progressFill.style.width = `${(currentQuestion / totalQuestions) * 100}%`;
+                progressText.textContent = `${currentQuestion}/${totalQuestions}`;
+            };
+
+            // Form submission
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                try {
+                    if (typeof firebase === 'undefined') {
+                        throw new Error('Firebase is not initialized');
+                    }
+
+                    const formData = new FormData(form);
+                    const surveyData = {};
+
+                    // ✅ Handle checkboxes properly by collecting all selected values
+                    form.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                        if (checkbox.checked) {
+                            if (!surveyData[checkbox.name]) {
+                                surveyData[checkbox.name] = []; // Initialize as an array
+                            }
+                            surveyData[checkbox.name].push(checkbox.value);
+                        }
+                    });
+
+                    // ✅ Collect normal (non-checkbox) fields
+                    for (const [key, value] of formData.entries()) {
+                        if (!surveyData[key]) { // Avoid overriding checkbox values
+                            surveyData[key] = value;
+                        }
+                    }
+
+                    // ✅ Convert checkbox arrays to a string for easy storage
+                    Object.keys(surveyData).forEach(key => {
+                        if (Array.isArray(surveyData[key])) {
+                            surveyData[key] = surveyData[key].join(", "); // Store as comma-separated values
+                        }
+                    });
+
+                    surveyData.timestamp = firebase.database.ServerValue.TIMESTAMP;
+                    surveyData.submitDate = new Date().toISOString();
+
+                    const responseRef = firebase.database().ref('survey-responses').push();
+                    await responseRef.set(surveyData);
+
+                    form.style.display = 'none';
+                    document.querySelector('.survey-header').style.display = 'none';
+                    document.querySelector('.progress-bar').parentElement.style.display = 'none';
+                    thankYouScreen.style.display = 'block';
+                } catch (error) {
+                    alert('There was an error submitting your response. Please try again.');
+                }
+            });
+
+
+            // Restart survey button
+            restartBtn.addEventListener('click', function () {
+                window.location.href = 'portfolio.html';
+            });
+
+            // Sidebar toggle
+            menuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                menuBtn.textContent = sidebar.classList.contains('active') ? '✕' : '☰';
+            });
+
+            // Close sidebar when clicking on a link
+            document.querySelectorAll('.sidebar .nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                    menuBtn.textContent = '☰';
+                });
+            });
+        });
+    </script>
+    <script>
+        firebase.database().ref('test-connection').set({
+            message: "Firebase WebSocket should now work!",
+            timestamp: new Date().toISOString()
+        }).then(() => {
+            console.log('✅ Database write successful!');
+        }).catch(error => {
+            console.error('❌ Database write failed:', error);
+        });
+    </script>
+
+
+</body>
+
+</html>

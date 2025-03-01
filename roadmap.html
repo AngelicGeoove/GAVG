@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G.A.V.G. Project Roadmap</title>
+    <link rel="icon" type="image/png" href="Logo Coin.png">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #009dff;
+            --secondary: #943dff;
+            --dark: #0F0F1A;
+            --darker: #07070f;
+            --light: #F8F9FC;
+            --accent: #00E5FF;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            overflow: hidden;
+            padding: 2rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .roadmap {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .roadmap-step {
+            background: rgba(15, 15, 26, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .roadmap-step::before {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--primary);
+            filter: blur(80px);
+            opacity: 0.2;
+            top: -50px;
+            right: -50px;
+            z-index: -1;
+        }
+
+        .roadmap-step::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--secondary);
+            filter: blur(80px);
+            opacity: 0.2;
+            bottom: -50px;
+            left: -50px;
+            z-index: -1;
+        }
+
+        .step-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .step-desc {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="section-title">
+            <h2>G.A.V.G. Project Roadmap</h2>
+            <p>Follow the progress of the Ghana And Video Games Project</p>
+        </div>
+
+        <div class="roadmap">
+            <div class="roadmap-step">
+                <h3 class="step-title">Step 1: Launch Survey</h3>
+                <p class="step-desc">The survey has been officially launched to gather initial data on gaming habits and perceptions in Ghana.</p>
+            </div>
+            <div class="roadmap-step">
+                <h3 class="step-title">Step 2: Analyze Responses</h3>
+                <p class="step-desc">Analyze the survey responses to identify key insights and trends.</p>
+            </div>
+            <div class="roadmap-step">
+                <h3 class="step-title">Step 3: Further Surveys</h3>
+                <p class="step-desc">Conduct additional surveys if needed to gather more detailed information.</p>
+            </div>
+            <div class="roadmap-step">
+                <h3 class="step-title">Step 4: Develop Game</h3>
+                <p class="step-desc">Based on the survey results, develop a game that reflects the insights and preferences of the Ghanaian gaming community.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

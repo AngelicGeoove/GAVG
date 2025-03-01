@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Angel's Portfolio</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+    <link rel="icon" type="image/png" href="Logo Coin.png">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         :root {
@@ -16,13 +19,13 @@
             --accent: #00E5FF;
             --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--dark);
@@ -30,12 +33,12 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-        
+
         .container {
             width: 100%;
             overflow: hidden;
         }
-        
+
         .noise {
             position: fixed;
             top: 0;
@@ -47,7 +50,7 @@
             opacity: 0.3;
             z-index: 100;
         }
-        
+
         nav {
             display: flex;
             justify-content: space-between;
@@ -61,7 +64,7 @@
             -webkit-backdrop-filter: blur(10px);
             background-color: rgba(15, 15, 26, 0.8);
         }
-        
+
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
@@ -70,16 +73,16 @@
             background-clip: text;
             color: transparent;
         }
-        
+
         .nav-links {
             display: flex;
             list-style: none;
         }
-        
+
         .nav-links li {
             margin: 0 1.5rem;
         }
-        
+
         .nav-links a {
             color: var(--light);
             text-decoration: none;
@@ -87,7 +90,7 @@
             position: relative;
             padding: 0.5rem 0;
         }
-        
+
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -98,17 +101,17 @@
             background: var(--gradient);
             transition: width 0.3s ease;
         }
-        
+
         .nav-links a:hover::after {
             width: 100%;
         }
-        
+
         .menu-btn {
             display: none;
             cursor: pointer;
             font-size: 1.5rem;
         }
-        
+
         header {
             height: 100vh;
             display: flex;
@@ -118,13 +121,13 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .header-content {
             max-width: 900px;
             text-align: center;
             z-index: 2;
         }
-        
+
         .header-content h1 {
             font-size: 4.5rem;
             font-weight: 800;
@@ -135,13 +138,13 @@
             background-clip: text;
             color: transparent;
         }
-        
+
         .header-content p {
             font-size: 1.5rem;
             margin-bottom: 2rem;
             opacity: 0.9;
         }
-        
+
         .header-bg {
             position: absolute;
             top: 0;
@@ -150,7 +153,7 @@
             height: 100%;
             z-index: 1;
         }
-        
+
         .blob {
             position: absolute;
             width: 500px;
@@ -160,21 +163,21 @@
             opacity: 0.4;
             z-index: 1;
         }
-        
+
         .blob1 {
             background: var(--primary);
             top: -200px;
             right: -100px;
             animation: float 8s ease-in-out infinite alternate;
         }
-        
+
         .blob2 {
             background: var(--secondary);
             bottom: -200px;
             left: -100px;
             animation: float 10s ease-in-out infinite alternate-reverse;
         }
-        
+
         .blob3 {
             background: var(--accent);
             top: 30%;
@@ -183,16 +186,17 @@
             height: 300px;
             animation: float 12s ease-in-out infinite alternate;
         }
-        
+
         @keyframes float {
             0% {
                 transform: translate(0, 0) rotate(0deg);
             }
+
             100% {
                 transform: translate(20px, 20px) rotate(10deg);
             }
         }
-        
+
         .btn {
             display: inline-block;
             padding: 1rem 2.5rem;
@@ -209,12 +213,12 @@
             z-index: 1;
             box-shadow: 0 5px 15px rgba(110, 0, 255, 0.3);
         }
-        
+
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(110, 0, 255, 0.4);
         }
-        
+
         .btn::before {
             content: '';
             position: absolute;
@@ -227,28 +231,28 @@
             z-index: -1;
             transition: opacity 0.3s ease;
         }
-        
+
         .btn:hover::before {
             opacity: 1;
         }
-        
+
         section {
             padding: 8rem 5%;
             position: relative;
         }
-        
+
         .section-bg {
             background-color: var(--darker);
             clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
             margin: 5rem 0;
         }
-        
+
         .section-title {
             text-align: center;
             margin-bottom: 5rem;
             position: relative;
         }
-        
+
         .section-title h2 {
             font-size: 3rem;
             font-weight: 800;
@@ -259,14 +263,14 @@
             display: inline-block;
             margin-bottom: 1rem;
         }
-        
+
         .section-title p {
             font-size: 1.2rem;
             opacity: 0.7;
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         .section-title::after {
             content: '';
             width: 80px;
@@ -278,7 +282,7 @@
             transform: translateX(-50%);
             border-radius: 2px;
         }
-        
+
         .games-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -286,7 +290,7 @@
             max-width: 1400px;
             margin: 0 auto;
         }
-        
+
         .game-card {
             background: rgba(15, 15, 26, 0.3);
             backdrop-filter: blur(10px);
@@ -298,11 +302,11 @@
             position: relative;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         .game-card:hover {
             transform: translateY(-15px) scale(1.03);
         }
-        
+
         .game-card::before {
             content: '';
             position: absolute;
@@ -316,34 +320,34 @@
             z-index: 2;
             pointer-events: none;
         }
-        
+
         .game-card:hover::before {
             opacity: 1;
         }
-        
+
         .game-img {
             height: 250px;
             position: relative;
             overflow: hidden;
         }
-        
+
         .game-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
-        
+
         .game-card:hover .game-img img {
             transform: scale(1.1);
         }
-        
+
         .game-content {
             padding: 2rem;
             position: relative;
             z-index: 3;
         }
-        
+
         .game-title {
             font-size: 1.8rem;
             font-weight: 700;
@@ -354,20 +358,20 @@
             color: transparent;
             display: inline-block;
         }
-        
+
         .game-desc {
             margin-bottom: 1.5rem;
             font-size: 1rem;
             opacity: 0.8;
         }
-        
+
         .tags {
             display: flex;
             flex-wrap: wrap;
             margin-bottom: 1.5rem;
             gap: 0.5rem;
         }
-        
+
         .tag {
             padding: 0.4rem 1rem;
             background: rgba(110, 0, 255, 0.2);
@@ -376,12 +380,12 @@
             font-size: 0.8rem;
             color: var(--accent);
         }
-        
+
         .game-links {
             display: flex;
             gap: 1rem;
         }
-        
+
         .game-link {
             padding: 0.6rem 1.2rem;
             border-radius: 50px;
@@ -390,23 +394,24 @@
             text-decoration: none;
             transition: all 0.3s ease;
         }
-        
+
         .primary-link {
             background: var(--gradient);
             color: white;
         }
-        
+
         .secondary-link {
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: var(--light);
         }
-        
-        .primary-link:hover, .secondary-link:hover {
+
+        .primary-link:hover,
+        .secondary-link:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
+
         .ghana-project {
             background: rgba(15, 15, 26, 0.3);
             backdrop-filter: blur(10px);
@@ -420,7 +425,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .ghana-project::before {
             content: '';
             position: absolute;
@@ -434,7 +439,7 @@
             right: -100px;
             z-index: -1;
         }
-        
+
         .ghana-project::after {
             content: '';
             position: absolute;
@@ -448,7 +453,7 @@
             left: -100px;
             z-index: -1;
         }
-        
+
         .project-title {
             font-size: 2rem;
             font-weight: 700;
@@ -459,22 +464,22 @@
             color: transparent;
             display: inline-block;
         }
-        
+
         .project-text {
             margin-bottom: 1.5rem;
             opacity: 0.9;
         }
-        
+
         .project-list {
             margin: 1.5rem 0;
             padding-left: 1.5rem;
         }
-        
+
         .project-list li {
             margin-bottom: 1rem;
             position: relative;
         }
-        
+
         .project-list li::before {
             content: '';
             position: absolute;
@@ -485,14 +490,14 @@
             background: var(--gradient);
             border-radius: 50%;
         }
-        
+
         .project-cta {
             margin-top: 2.5rem;
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
         }
-        
+
         .contact-form {
             max-width: 800px;
             margin: 0 auto;
@@ -504,18 +509,19 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         .form-group {
             margin-bottom: 2rem;
         }
-        
+
         .form-label {
             display: block;
             margin-bottom: 0.8rem;
             font-weight: 500;
         }
-        
-        .form-input, .form-textarea {
+
+        .form-input,
+        .form-textarea {
             width: 100%;
             padding: 1rem;
             background: rgba(255, 255, 255, 0.05);
@@ -525,19 +531,20 @@
             font-family: inherit;
             transition: all 0.3s ease;
         }
-        
-        .form-input:focus, .form-textarea:focus {
+
+        .form-input:focus,
+        .form-textarea:focus {
             outline: none;
             border-color: var(--primary);
             background: rgba(255, 255, 255, 0.1);
             box-shadow: 0 0 0 3px rgba(110, 0, 255, 0.2);
         }
-        
+
         .form-textarea {
             min-height: 150px;
             resize: vertical;
         }
-        
+
         .submit-btn {
             display: block;
             width: 100%;
@@ -550,26 +557,26 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .submit-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(110, 0, 255, 0.4);
         }
-        
+
         footer {
             background: var(--darker);
             padding: 4rem 5% 2rem;
             text-align: center;
             position: relative;
         }
-        
+
         .footer-content {
             max-width: 600px;
             margin: 0 auto;
             position: relative;
             z-index: 2;
         }
-        
+
         .footer-logo {
             font-size: 1.8rem;
             font-weight: 700;
@@ -580,14 +587,14 @@
             margin-bottom: 1.5rem;
             display: inline-block;
         }
-        
+
         .social-links {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             margin: 2rem 0;
         }
-        
+
         .social-link {
             width: 40px;
             height: 40px;
@@ -600,32 +607,37 @@
             text-decoration: none;
             transition: all 0.3s ease;
         }
-        
+
         .social-link:hover {
             background: var(--gradient);
             transform: translateY(-3px);
         }
-        
+
         .copyright {
             margin-top: 2rem;
             font-size: 0.9rem;
             opacity: 0.7;
         }
-        
+
+        .contact-form-container {
+            display: flex;
+            justify-content: center;
+        }
+
         @media (max-width: 992px) {
             .header-content h1 {
                 font-size: 3.5rem;
             }
-            
+
             .section-title h2 {
                 font-size: 2.5rem;
             }
-            
+
             .games-container {
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }
         }
-        
+
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
@@ -640,81 +652,83 @@
                 transition: right 0.5s ease;
                 z-index: 1000;
             }
-            
+
             .nav-links.active {
                 right: 0;
             }
-            
+
             .nav-links li {
                 margin: 1.5rem 0;
             }
-            
+
             .menu-btn {
                 display: block;
                 z-index: 1001;
             }
-            
+
             .header-content h1 {
                 font-size: 2.8rem;
             }
-            
+
             .header-content p {
                 font-size: 1.2rem;
             }
-            
+
             .section-title h2 {
                 font-size: 2rem;
             }
-            
+
             .ghana-project {
                 padding: 2rem;
             }
-            
+
             .project-cta {
                 flex-direction: column;
             }
-            
+
             .project-cta .btn {
                 width: 100%;
                 text-align: center;
             }
-            
+
             .contact-form {
                 padding: 2rem;
             }
         }
-        
+
         @media (max-width: 576px) {
             .header-content h1 {
                 font-size: 2.3rem;
             }
-            
+
             .btn {
                 padding: 0.8rem 2rem;
             }
-            
+
             .games-container {
                 grid-template-columns: 1fr;
             }
-            
+
             .game-img {
                 height: 200px;
             }
-            
+
             .game-content {
                 padding: 1.5rem;
             }
-            
+
             .game-title {
                 font-size: 1.5rem;
             }
         }
     </style>
+
 </head>
+
 <body>
     <div class="container">
         <div class="noise"></div>
-        
+
         <nav>
             <div class="logo">ANGELIC GROOVE</div>
             <ul class="nav-links">
@@ -725,27 +739,29 @@
             </ul>
             <div class="menu-btn">☰</div>
         </nav>
-        
+
         <header id="home">
             <div class="header-bg">
                 <div class="blob blob1"></div>
                 <div class="blob blob2"></div>
                 <div class="blob blob3"></div>
             </div>
-            
+
             <div class="header-content">
                 <h1>ANGELIC GROOVE</h1>
-                <p>Aspiring Unity Game Developer | Paladins Trivia Guy | Pretty Good Sniper | G.A.V.G. Project Creator</p>
+                <p>Aspiring Unity Game Developer | Paladins Trivia Guy | Pretty Good Sniper | G.A.V.G. Project Creator
+                </p>
                 <a href="#games" class="btn">Explore My Work</a>
             </div>
         </header>
-        
+
         <section id="games" class="section-bg">
             <div class="section-title">
                 <h2>Featured Games</h2>
-                <p>A showcase of some fan games that I have made using Unity for Paladins, my favorite game of all time.</p>
+                <p>A showcase of some fan games that I have made using Unity for Paladins, my favorite game of all time.
+                </p>
             </div>
-            
+
             <div class="games-container">
                 <div class="game-card">
                     <div class="game-img">
@@ -753,11 +769,12 @@
                     </div>
                     <div class="game-content">
                         <h3 class="game-title">Paladins Trivia V2!</h3>
-                        <p class="game-desc">A recreation of the first ever Paladins Fan Game that I made. This is technically verion 3
-                                            since I already have remade it in Unity twice now. But due to some unforseen circumstances,
-                                            I lost the project files for all of the games I made before October 2024. The first one was 
-                                            a Google Forms game. Because I used images for the questions, I am unable to load the
-                                            original Google Forms game on my current laptop. XD.
+                        <p class="game-desc">A recreation of the first ever Paladins Fan Game that I made. This is
+                            technically verion 3
+                            since I already have remade it in Unity twice now. But due to some unforseen circumstances,
+                            I lost the project files for all of the games I made before October 2024. The first one was
+                            a Google Forms game. Because I used images for the questions, I am unable to load the
+                            original Google Forms game on my current laptop. XD.
                         </p>
                         <div class="tags">
                             <span class="tag">Unity</span>
@@ -765,22 +782,26 @@
                             <span class="tag">Development In Progress</span>
                         </div>
                         <div class="game-links">
-                            <a href="https://paladinstriviaguy.itch.io/paladins-trivia" class="game-link primary-link">Click To Play</a>
+                            <a href="https://paladinstriviaguy.itch.io/paladins-trivia"
+                                class="game-link primary-link">Click To Play</a>
                             <a href="https://youtu.be/dC3GfDVEaT0" class="game-link secondary-link">Release Trailer</a>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="game-card">
                     <div class="game-img">
                         <img src="images/Risk of Realms.png" alt="Celestial Odyssey">
                     </div>
                     <div class="game-content">
                         <h3 class="game-title">Risk Of Realms</h3>
-                        <p class="game-desc">Paladins meets Risk of Rains 2. This is technically the third fan game that I want to complete for Paladins.
-                                                Development has been halt because I looked into the plans that I have for the game and saw, my laptop cannot
-                                                handle the workload I was about to put it through. But yeah, a really cool concept that I have laid the 
-                                                foundations for, when I get an even decently good PC.
+                        <p class="game-desc">Paladins meets Risk of Rains 2. This is technically the third fan game that
+                            I want to complete for Paladins.
+                            Development has been halt because I looked into the plans that I have for the game and saw,
+                            my laptop cannot
+                            handle the workload I was about to put it through. But yeah, a really cool concept that I
+                            have laid the
+                            foundations for, when I get an even decently good PC.
                         </p>
                         <div class="tags">
                             <span class="tag">Unity</span>
@@ -789,25 +810,27 @@
                             <span class="tag">Development Paused</span>
                         </div>
                         <div class="game-links">
-                            <a href="https://paladinstriviaguy.itch.io/risk-of-realms" class="game-link primary-link">Play Demo</a>
+                            <a href="https://paladinstriviaguy.itch.io/risk-of-realms"
+                                class="game-link primary-link">Play Demo</a>
                             <a href="https://youtu.be/k7fY2cqBjcE" class="game-link secondary-link">Game Trailer</a>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="game-card">
                     <div class="game-img">
                         <img src="/api/placeholder/400/320" alt="Realm Runners">
                     </div>
                     <div class="game-content">
                         <h3 class="game-title">Realm Runners</h3>
-                        <p class="game-desc">An Endless Runner that I have put 80% of my development time into for the past few months.
-                                            Basically Subway Surfers but Paladins. Hoping to release more updates for this one, as I am
-                                            trying as much as possible to make the development process pretty modular to streamline how 
-                                            easy it will be to just add special sections to the game. I am actually excited for how this 
-                                            one will pan out in the future, cause the ideas seem to come to me as soon as I finish 
-                                            one part of the game.
-                                            
+                        <p class="game-desc">An Endless Runner that I have put 80% of my development time into for the
+                            past few months.
+                            Basically Subway Surfers but Paladins. Hoping to release more updates for this one, as I am
+                            trying as much as possible to make the development process pretty modular to streamline how
+                            easy it will be to just add special sections to the game. I am actually excited for how this
+                            one will pan out in the future, cause the ideas seem to come to me as soon as I finish
+                            one part of the game.
+
                         </p>
                         <div class="tags">
                             <span class="tag">Unity</span>
@@ -816,7 +839,8 @@
                         </div>
                         <div class="game-links">
                             <a class="game-link primary-link">Avaialble To Play In a Few Days...</a>
-                            <a href="https://youtu.be/oncREGxjwV0" class="game-link secondary-link">Latest Development Progress</a>
+                            <a href="https://youtu.be/oncREGxjwV0" class="game-link secondary-link">Latest Development
+                                Progress</a>
                         </div>
                     </div>
                 </div>
@@ -827,12 +851,14 @@
                     </div>
                     <div class="game-content">
                         <h3 class="game-title">Paladins Flappy Bird</h3>
-                        <p class="game-desc">This is one of the few rare games I managed to complete before the October 2024 incident.
-                                            As the name suggests, it is a Flappy Bird clone, but with Paladins Champions. I had planned
-                                            updates for it, but yeah, they didn't come to fruition. I was willing to recreate that one
-                                            too but unfortunately, the Paladins Community received a very unfortunate news on February 2025
-                                            that was dreaded for a long time. But it is fully playable and I am proud of it. XD
-                                            
+                        <p class="game-desc">This is one of the few rare games I managed to complete before the October
+                            2024 incident.
+                            As the name suggests, it is a Flappy Bird clone, but with Paladins Champions. I had planned
+                            updates for it, but yeah, they didn't come to fruition. I was willing to recreate that one
+                            too but unfortunately, the Paladins Community received a very unfortunate news on February
+                            2025
+                            that was dreaded for a long time. But it is fully playable and I am proud of it. XD
+
                         </p>
                         <div class="tags">
                             <span class="tag">Unity</span>
@@ -840,102 +866,124 @@
                             <span class="tag">Full Release</span>
                         </div>
                         <div class="game-links">
-                            <a href="https://play.unity.com/en/games/eced2aaa-8be5-4e65-b686-347cfdd26391/flappy-bird-with-paladins-champions"  class="game-link primary-link">Play</a>
+                            <a href="https://play.unity.com/en/games/eced2aaa-8be5-4e65-b686-347cfdd26391/flappy-bird-with-paladins-champions"
+                                class="game-link primary-link">Play</a>
                             <!-- <a href="https://youtu.be/oncREGxjwV0" class="game-link secondary-link">Latest Development Progress</a> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-img">
+                        <img src="images/OtherGames.png" alt="Other Game Development Ventures">
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Other Game Development Ventures</h3>
+                        <p class="game-desc">Explore my other game development projects, including an endless runner, a survival game like Vampire Survivors, and an open world game.</p>
+                        <div class="tags">
+                            <span class="tag">Unity</span>
+                            <span class="tag">Endless Runner</span>
+                            <span class="tag">Survival</span>
+                            <span class="tag">Open World</span>
+                        </div>
+                        <div class="game-links">
+                            <a href="other-games.html" class="game-link primary-link">Learn More</a>
+                            <a href="https://www.linkedin.com/in/angelicgroove/" class="game-link secondary-link">LinkedIn</a>
+                            <a href="https://www.youtube.com/channel/UCOXs9LhLX2hsz7WYtqNsLbQ" class="game-link secondary-link">YouTube</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section id="ghana">
             <div class="section-title">
                 <h2>Ghana And Video Games Project</h2>
                 <p>Research initiative exploring the gaming culture in Ghana</p>
             </div>
-            
+
             <div class="ghana-project">
                 <h3 class="project-title">Research Initiative</h3>
-                <p class="project-text">The "Ghana And Video Games" project is a research initiative that I have started to explore the Ghanaian perspective on Video Games and Video Game Development in general.
-                                         Through comprehensive surveys and community engagement, I hope to be able to document perceptions of video games and game development across Ghana.</p>
-                
+                <p class="project-text">The "Ghana And Video Games" project is a research initiative that I have started
+                    to explore the Ghanaian perspective on Video Games and Video Game Development in general.
+                    Through comprehensive surveys and community engagement, I hope to be able to document perceptions of
+                    video games and game development across Ghana.</p>
+
                 <h4 class="project-title">Research Objectives</h4>
                 <ul class="project-list">
                     <li>Map the landscape of gaming perception across different demographics in Ghana</li>
                     <li>Identify barriers to entry for aspiring Ghanaian game developers</li>
-                    <li>Explore the potential of games as tools for cultural expression and education further down the line, if research bears fruit</li>
-                    <li>Assess market and sponsor opportunities for locally developed games reflecting Ghanaian narratives</li>
+                    <li>Explore the potential of games as tools for cultural expression and education further down the
+                        line, if research bears fruit</li>
+                    <li>Assess market and sponsor opportunities for locally developed games reflecting Ghanaian
+                        narratives</li>
                 </ul>
-                
+
                 <h4 class="project-title">Current Progress</h4>
-                <p class="project-text">I currently have started my first Survey to get the very brief and generalised idea and habits that we have around Gaming.
-                                        It is going to be a long way from here, but I will keep at it. The survey touches on: Technological access, perception of 
-                                        game development as a career, and interest in games that represent local culture. Initial findings are yet to be finalized
-                                        as I just started the Survey. So I really will appreciate you sharing or contributing to the G.A.V.G. project in anyway possible.</p>
-                
+                <p class="project-text">I currently have started my first Survey to get the very brief and generalised
+                    idea and habits that we have around Gaming.
+                    It is going to be a long way from here, but I will keep at it. The survey touches on: Technological
+                    access, perception of
+                    game development as a career, and interest in games that represent local culture. Initial findings
+                    are yet to be finalized
+                    as I just started the Survey. So I really will appreciate you sharing or contributing to the
+                    G.A.V.G. project in anyway possible.</p>
+
                 <h4 class="project-title">Future Impact</h4>
-                <p class="project-text">Based on the research, I (or we if it comes to that) may make a purely Ghana-made Video Game.
-                                        Other actual impactful actions may be taken, depending on whether I have overcome my shyness or 
-                                        built up the Confidence to be able to do that.
+                <p class="project-text">Based on the research, I (or we if it comes to that) may make a purely
+                    Ghana-made Video Game.
+                    Other actual impactful actions may be taken, depending on whether I have overcome my shyness or
+                    built up the Confidence to be able to do that.
                 </p>
-                
+
                 <div class="project-cta">
-                    <a href="https://angelicgeoove.github.io/GAVG/" class="btn">Participate in the Survey if You haven't. I will appreciate it, a lot.</a>
+                    <a href="index.html" class="btn">Participate in the Survey if You
+                        haven't. I will appreciate it, a lot.</a>
                 </div>
             </div>
         </section>
-        
+
         <section id="contact" class="section-bg">
             <div class="section-title">
                 <h2>Get In Touch</h2>
                 <p>Let's create something Exemplary Together</p>
             </div>
-            
-            <!-- <form class="contact-form">
-                <div class="form-group">
-                    <label for="name" class="form-label">Your Name</label>
-                    <input type="text" id="name" class="form-input" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" id="email" class="form-input" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message" class="form-label">Your Message</label>
-                    <textarea id="message" class="form-textarea" required></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form> -->
-            <a style="align-self: center;" href="https://chat.whatsapp.com/EjHVTT8TNuF92db2tLnGMf" class="footer-logo, btn"><i class="fab fa-whatsapp"></i> The G.A.V.G. Whatsapp Platform</a>
+            <div class="contact-form-container">
+                <a href="https://chat.whatsapp.com/EjHVTT8TNuF92db2tLnGMf" class="footer-logo btn">
+                    <i class="fab fa-whatsapp"></i> The G.A.V.G. Whatsapp Platform
+                </a>
+            </div>
         </section>
-        
+
         <footer>
             <div class="footer-content">
                 <div class="social-links">
-                    <a href="https://wa.me/233552830731" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://x.com/BugadinsTrivia/" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com/in/angelicgroove/" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://https://www.youtube.com/channel/UCOXs9LhLX2hsz7WYtqNsLbQ" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.reddit.com/user/Angelagyeibi/" class="social-link" target="_blank"><i class="fab fa-reddit"></i></a>
+                    <a href="https://wa.me/233552830731" class="social-link" target="_blank"><i
+                            class="fab fa-whatsapp"></i></a>
+                    <a href="https://x.com/BugadinsTrivia/" class="social-link" target="_blank"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/angelicgroove/" class="social-link" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://https://www.youtube.com/channel/UCOXs9LhLX2hsz7WYtqNsLbQ" class="social-link"
+                        target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.reddit.com/user/Angelagyeibi/" class="social-link" target="_blank"><i
+                            class="fab fa-reddit"></i></a>
                 </div>
                 <p class="copyright">&copy; 2025 Angelic Groove Portfolio. All rights reserved.</p>
             </div>
         </footer>
     </div>
-    
+
     <script>
         // Simple mobile menu toggle
         const menuBtn = document.querySelector('.menu-btn');
         const navLinks = document.querySelector('.nav-links');
-        
+
         menuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             menuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
         });
-        
+
         // Close menu when clicking on a link (mobile)
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
@@ -943,7 +991,7 @@
                 menuBtn.textContent = '☰';
             });
         });
-        
+
         // Navbar background change on scroll
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('nav');
@@ -957,4 +1005,5 @@
         });
     </script>
 </body>
+
 </html>
