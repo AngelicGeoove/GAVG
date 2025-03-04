@@ -4,20 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angel's Portfolio</title>
+    <title>Portfolio | Angelic Groove</title>
     <link rel="icon" type="image/png" href="Logo Coin.png">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #009dff;
-            --secondary: #943dff;
-            --dark: #0F0F1A;
-            --darker: #07070f;
-            --light: #F8F9FC;
+            --red: #CE1126;
+            --yellow: #FCD116;
+            --green: #006B3F;
+            --black: #000000;
+            --white: #FFFFFF;
+            --dark: #0A0A0A;
+            --light: #F8F9FA;
             --accent: #00E5FF;
-            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0D0D0D;
+            --bg-secondary: #121212;
+            --text-primary: #F8F9FA;
+            --text-secondary: #B0B0B0;
+            --card-bg: #1A1A1A;
+            --border: #2A2A2A;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #F8F9FA;
+            --bg-secondary: #FFFFFF;
+            --text-primary: #111111;
+            --text-secondary: #555555;
+            --card-bg: #FFFFFF;
+            --border: #E0E0E0;
         }
 
         * {
@@ -27,981 +49,896 @@
         }
 
         body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: var(--transition);
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .container {
-            width: 100%;
-            overflow: hidden;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
 
-        .noise {
+        .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-            pointer-events: none;
-            opacity: 0.3;
             z-index: 100;
-        }
-
-        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 5%;
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            transition: all 0.3s ease;
+            padding: 1.5rem 2rem;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            background-color: rgba(15, 15, 26, 0.8);
+            background-color: rgba(var(--bg-primary), 0.8);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
         }
 
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, var(--red), var(--yellow), var(--green));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            font-weight: 800;
+            letter-spacing: 1px;
         }
 
         .nav-links {
             display: flex;
-            list-style: none;
+            gap: 2rem;
         }
 
-        .nav-links li {
-            margin: 0 1.5rem;
-        }
-
-        .nav-links a {
-            color: var(--light);
+        .nav-link {
             text-decoration: none;
+            color: var(--text-primary);
             font-weight: 500;
+            transition: var(--transition);
             position: relative;
-            padding: 0.5rem 0;
         }
 
-        .nav-links a::after {
+        .nav-link::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
             width: 0;
             height: 2px;
-            background: var(--gradient);
-            transition: width 0.3s ease;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(135deg, var(--red), var(--yellow), var(--green));
+            transition: var(--transition);
         }
 
-        .nav-links a:hover::after {
+        .nav-link:hover {
+            color: var(--yellow);
+        }
+
+        .nav-link:hover::after {
             width: 100%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            color: var(--yellow);
+            transform: rotate(30deg);
         }
 
         .menu-btn {
             display: none;
+            background: transparent;
+            border: none;
             cursor: pointer;
             font-size: 1.5rem;
+            color: var(--text-primary);
+            transition: var(--transition);
         }
 
-        header {
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 300px;
             height: 100vh;
+            background-color: var(--card-bg);
+            z-index: 200;
+            padding: 2rem;
+            transition: var(--transition);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-nav.active {
+            left: 0;
+        }
+
+        .mobile-nav-links {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 5%;
-            position: relative;
-            overflow: hidden;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
 
-        .header-content {
-            max-width: 900px;
-            text-align: center;
-            z-index: 2;
-        }
-
-        .header-content h1 {
-            font-size: 4.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .header-content p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .header-bg {
-            position: absolute;
+        .mobile-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
-        }
-
-        .blob {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            z-index: 1;
-        }
-
-        .blob1 {
-            background: var(--primary);
-            top: -200px;
-            right: -100px;
-            animation: float 8s ease-in-out infinite alternate;
-        }
-
-        .blob2 {
-            background: var(--secondary);
-            bottom: -200px;
-            left: -100px;
-            animation: float 10s ease-in-out infinite alternate-reverse;
-        }
-
-        .blob3 {
-            background: var(--accent);
-            top: 30%;
-            right: 20%;
-            width: 300px;
-            height: 300px;
-            animation: float 12s ease-in-out infinite alternate;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-
-            100% {
-                transform: translate(20px, 20px) rotate(10deg);
-            }
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            box-shadow: 0 5px 15px rgba(110, 0, 255, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(110, 0, 255, 0.4);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 199;
             opacity: 0;
-            z-index: -1;
-            transition: opacity 0.3s ease;
+            visibility: hidden;
+            transition: var(--transition);
         }
 
-        .btn:hover::before {
+        .mobile-overlay.active {
             opacity: 1;
+            visibility: visible;
         }
 
-        section {
-            padding: 8rem 5%;
-            position: relative;
-        }
-
-        .section-bg {
-            background-color: var(--darker);
-            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
-            margin: 5rem 0;
-        }
-
-        .section-title {
+        /* Portfolio specific styles */
+        .portfolio-header {
+            padding-top: 7rem;
+            padding-bottom: 3rem;
             text-align: center;
-            margin-bottom: 5rem;
             position: relative;
         }
 
-        .section-title h2 {
+        .portfolio-title {
             font-size: 3rem;
             font-weight: 800;
-            background: var(--gradient);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--red), var(--yellow), var(--green));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            display: inline-block;
-            margin-bottom: 1rem;
         }
 
-        .section-title p {
-            font-size: 1.2rem;
-            opacity: 0.7;
-            max-width: 600px;
-            margin: 0 auto;
+        .portfolio-description {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
 
-        .section-title::after {
-            content: '';
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            position: absolute;
-            bottom: -1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
         }
 
-        .games-container {
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--yellow);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--red), var(--green));
+            color: white;
+            border: none;
+        }
+
+        .projects-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
         }
 
-        .game-card {
-            background: rgba(15, 15, 26, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
-        .game-card:hover {
-            transform: translateY(-15px) scale(1.03);
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .game-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .game-card:hover::before {
-            opacity: 1;
-        }
-
-        .game-img {
-            height: 250px;
-            position: relative;
+        .project-img-container {
+            width: 100%;
+            height: 200px;
             overflow: hidden;
         }
 
-        .game-img img {
+        .project-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: var(--transition);
         }
 
-        .game-card:hover .game-img img {
-            transform: scale(1.1);
+        .project-card:hover .project-img {
+            transform: scale(1.05);
         }
 
-        .game-content {
-            padding: 2rem;
-            position: relative;
-            z-index: 3;
-        }
-
-        .game-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-        }
-
-        .game-desc {
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-
-        .tags {
+        .project-content {
+            padding: 1.5rem;
+            flex: 1;
             display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            padding: 0.4rem 1rem;
-            background: rgba(110, 0, 255, 0.2);
-            border: 1px solid rgba(110, 0, 255, 0.5);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            color: var(--accent);
-        }
-
-        .game-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .game-link {
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .primary-link {
-            background: var(--gradient);
-            color: white;
-        }
-
-        .secondary-link {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--light);
-        }
-
-        .primary-link:hover,
-        .secondary-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .ghana-project {
-            background: rgba(15, 15, 26, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 3rem;
-            max-width: 1000px;
-            margin: 0 auto;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ghana-project::before {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: var(--primary);
-            filter: blur(80px);
-            opacity: 0.2;
-            top: -100px;
-            right: -100px;
-            z-index: -1;
-        }
-
-        .ghana-project::after {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: var(--secondary);
-            filter: blur(80px);
-            opacity: 0.2;
-            bottom: -100px;
-            left: -100px;
-            z-index: -1;
+            flex-direction: column;
         }
 
         .project-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
-        .project-text {
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-        }
-
-        .project-list {
-            margin: 1.5rem 0;
-            padding-left: 1.5rem;
-        }
-
-        .project-list li {
+        .project-category {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
             margin-bottom: 1rem;
-            position: relative;
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            background-color: rgba(var(--yellow), 0.1);
+            border-radius: 20px;
+            border: 1px solid var(--yellow);
         }
 
-        .project-list li::before {
-            content: '';
-            position: absolute;
-            left: -1.5rem;
-            top: 0.5rem;
-            width: 0.5rem;
-            height: 0.5rem;
-            background: var(--gradient);
-            border-radius: 50%;
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            flex: 1;
         }
 
-        .project-cta {
-            margin-top: 2.5rem;
+        .project-links {
             display: flex;
-            flex-wrap: wrap;
             gap: 1rem;
         }
 
-        .contact-form {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(15, 15, 26, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.8rem;
+        .project-link {
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
             font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
         }
 
-        .form-input,
-        .form-textarea {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: var(--light);
-            font-family: inherit;
-            transition: all 0.3s ease;
+        .demo-link {
+            background: linear-gradient(135deg, var(--red), var(--green));
+            color: white;
         }
 
-        .form-input:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 0 3px rgba(110, 0, 255, 0.2);
+        .code-link {
+            border: 1px solid var(--border);
+            color: var(--text-primary);
         }
 
-        .form-textarea {
-            min-height: 150px;
-            resize: vertical;
+        .project-link:hover {
+            transform: translateY(-2px);
         }
 
-        .submit-btn {
-            display: block;
-            width: 100%;
-            padding: 1rem;
-            background: var(--gradient);
+        .code-link:hover {
+            border-color: var(--yellow);
+        }
+
+        .more-projects {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .more-btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--red), var(--green));
             color: white;
             border: none;
-            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .submit-btn:hover {
+        .more-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(110, 0, 255, 0.4);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        footer {
-            background: var(--darker);
-            padding: 4rem 5% 2rem;
+        /* Footer and back to top same as index.html */
+        .footer {
+            padding: 2rem 0;
             text-align: center;
-            position: relative;
-        }
-
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
             position: relative;
             z-index: 2;
         }
 
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1.5rem;
-            display: inline-block;
+        .footer-text {
+            color: var(--text-secondary);
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            color: var(--light);
             text-decoration: none;
-            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 10;
         }
 
-        .social-link:hover {
-            background: var(--gradient);
-            transform: translateY(-3px);
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
         }
 
-        .copyright {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            opacity: 0.7;
+        .back-to-top:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-5px);
         }
 
-        .contact-form-container {
-            display: flex;
-            justify-content: center;
-        }
-
-        @media (max-width: 992px) {
-            .header-content h1 {
-                font-size: 3.5rem;
-            }
-
-            .section-title h2 {
-                font-size: 2.5rem;
-            }
-
-            .games-container {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        @media (max-width: 991px) {
+            .projects-container {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
-                background: var(--darker);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: right 0.5s ease;
-                z-index: 1000;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links li {
-                margin: 1.5rem 0;
+            .nav-links, .nav-buttons {
+                display: none;
             }
 
             .menu-btn {
                 display: block;
-                z-index: 1001;
             }
 
-            .header-content h1 {
-                font-size: 2.8rem;
+            .portfolio-title {
+                font-size: 2.5rem;
             }
 
-            .header-content p {
-                font-size: 1.2rem;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
-            }
-
-            .ghana-project {
-                padding: 2rem;
-            }
-
-            .project-cta {
-                flex-direction: column;
-            }
-
-            .project-cta .btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            .contact-form {
-                padding: 2rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .header-content h1 {
-                font-size: 2.3rem;
-            }
-
-            .btn {
-                padding: 0.8rem 2rem;
-            }
-
-            .games-container {
+            .projects-container {
                 grid-template-columns: 1fr;
             }
 
-            .game-img {
-                height: 200px;
-            }
-
-            .game-content {
-                padding: 1.5rem;
-            }
-
-            .game-title {
-                font-size: 1.5rem;
+            .project-card {
+                max-width: 450px;
+                margin: 0 auto;
             }
         }
     </style>
-
 </head>
 
 <body>
-    <div class="container">
-        <div class="noise"></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-text">ANGELIC GROOVE</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="portfolio.html" class="nav-link">Portfolio</a>
+            <a href="roadmap.html" class="nav-link">Roadmap</a>
+            <a href="other-games.html" class="nav-link">Games</a>
+            <a href="survey.html" class="nav-link">GAVG Survey</a>
+        </div>
+        <div class="nav-buttons">
+            <button class="theme-toggle" id="theme-toggle">
+                <i class="fa-regular fa-sun sun-icon"></i>
+                <i class="fa-regular fa-moon moon-icon hidden"></i>
+            </button>
+        </div>
+        <button class="menu-btn" id="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
 
-        <nav>
-            <div class="logo">ANGELIC GROOVE</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#games">Games</a></li>
-                <li><a href="#ghana">Research</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="menu-btn">☰</div>
-        </nav>
-
-        <header id="home">
-            <div class="header-bg">
-                <div class="blob blob1"></div>
-                <div class="blob blob2"></div>
-                <div class="blob blob3"></div>
-            </div>
-
-            <div class="header-content">
-                <h1>ANGELIC GROOVE</h1>
-                <p>Aspiring Unity Game Developer | Paladins Trivia Guy | Pretty Good Sniper | G.A.V.G. Project Creator
-                </p>
-                <a href="#games" class="btn">Explore My Work</a>
-            </div>
-        </header>
-
-        <section id="games" class="section-bg">
-            <div class="section-title">
-                <h2>Featured Games</h2>
-                <p>A showcase of some fan games that I have made using Unity for Paladins, my favorite game of all time.
-                </p>
-            </div>
-
-            <div class="games-container">
-                <div class="game-card">
-                    <div class="game-img">
-                        <img src="images/Paladins Trivia Main.png" alt="Paladins Trivia V2!">
-                    </div>
-                    <div class="game-content">
-                        <h3 class="game-title">Paladins Trivia V2!</h3>
-                        <p class="game-desc">A recreation of the first ever Paladins Fan Game that I made. This is
-                            technically verion 3
-                            since I already have remade it in Unity twice now. But due to some unforseen circumstances,
-                            I lost the project files for all of the games I made before October 2024. The first one was
-                            a Google Forms game. Because I used images for the questions, I am unable to load the
-                            original Google Forms game on my current laptop. XD.
-                        </p>
-                        <div class="tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">Quiz</span>
-                            <span class="tag">Development In Progress</span>
-                        </div>
-                        <div class="game-links">
-                            <a href="https://paladinstriviaguy.itch.io/paladins-trivia"
-                                class="game-link primary-link">Click To Play</a>
-                            <a href="https://youtu.be/dC3GfDVEaT0" class="game-link secondary-link">Release Trailer</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <div class="game-img">
-                        <img src="images/Risk of Realms.png" alt="Celestial Odyssey">
-                    </div>
-                    <div class="game-content">
-                        <h3 class="game-title">Risk Of Realms</h3>
-                        <p class="game-desc">Paladins meets Risk of Rains 2. This is technically the third fan game that
-                            I want to complete for Paladins.
-                            Development has been halt because I looked into the plans that I have for the game and saw,
-                            my laptop cannot
-                            handle the workload I was about to put it through. But yeah, a really cool concept that I
-                            have laid the
-                            foundations for, when I get an even decently good PC.
-                        </p>
-                        <div class="tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">Risk of Realms 2</span>
-                            <span class="tag">Open World</span>
-                            <span class="tag">Development Paused</span>
-                        </div>
-                        <div class="game-links">
-                            <a href="https://paladinstriviaguy.itch.io/risk-of-realms"
-                                class="game-link primary-link">Play Demo</a>
-                            <a href="https://youtu.be/k7fY2cqBjcE" class="game-link secondary-link">Game Trailer</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <div class="game-img">
-                        <img src="/api/placeholder/400/320" alt="Realm Runners">
-                    </div>
-                    <div class="game-content">
-                        <h3 class="game-title">Realm Runners</h3>
-                        <p class="game-desc">An Endless Runner that I have put 80% of my development time into for the
-                            past few months.
-                            Basically Subway Surfers but Paladins. Hoping to release more updates for this one, as I am
-                            trying as much as possible to make the development process pretty modular to streamline how
-                            easy it will be to just add special sections to the game. I am actually excited for how this
-                            one will pan out in the future, cause the ideas seem to come to me as soon as I finish
-                            one part of the game.
-
-                        </p>
-                        <div class="tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">Endless Runner</span>
-                            <span class="tag">Close To Release</span>
-                        </div>
-                        <div class="game-links">
-                            <a class="game-link primary-link">Avaialble To Play In a Few Days...</a>
-                            <a href="https://youtu.be/oncREGxjwV0" class="game-link secondary-link">Latest Development
-                                Progress</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <div class="game-img">
-                        <img src="/api/placeholder/400/320" alt="Realm Scrollers">
-                    </div>
-                    <div class="game-content">
-                        <h3 class="game-title">Paladins Flappy Bird</h3>
-                        <p class="game-desc">This is one of the few rare games I managed to complete before the October
-                            2024 incident.
-                            As the name suggests, it is a Flappy Bird clone, but with Paladins Champions. I had planned
-                            updates for it, but yeah, they didn't come to fruition. I was willing to recreate that one
-                            too but unfortunately, the Paladins Community received a very unfortunate news on February
-                            2025
-                            that was dreaded for a long time. But it is fully playable and I am proud of it. XD
-
-                        </p>
-                        <div class="tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">Flappy Bird</span>
-                            <span class="tag">Full Release</span>
-                        </div>
-                        <div class="game-links">
-                            <a href="https://play.unity.com/en/games/eced2aaa-8be5-4e65-b686-347cfdd26391/flappy-bird-with-paladins-champions"
-                                class="game-link primary-link">Play</a>
-                            <!-- <a href="https://youtu.be/oncREGxjwV0" class="game-link secondary-link">Latest Development Progress</a> -->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <div class="game-img">
-                        <img src="images/OtherGames.png" alt="Other Game Development Ventures">
-                    </div>
-                    <div class="game-content">
-                        <h3 class="game-title">Other Game Development Ventures</h3>
-                        <p class="game-desc">Explore my other game development projects, including an endless runner, a survival game like Vampire Survivors, and an open world game.</p>
-                        <div class="tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">Endless Runner</span>
-                            <span class="tag">Survival</span>
-                            <span class="tag">Open World</span>
-                        </div>
-                        <div class="game-links">
-                            <a href="other-games.html" class="game-link primary-link">Learn More</a>
-                            <a href="https://www.linkedin.com/in/angelicgroove/" class="game-link secondary-link">LinkedIn</a>
-                            <a href="https://www.youtube.com/channel/UCOXs9LhLX2hsz7WYtqNsLbQ" class="game-link secondary-link">YouTube</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="ghana">
-            <div class="section-title">
-                <h2>Ghana And Video Games Project</h2>
-                <p>Research initiative exploring the gaming culture in Ghana</p>
-            </div>
-
-            <div class="ghana-project">
-                <h3 class="project-title">Research Initiative</h3>
-                <p class="project-text">The "Ghana And Video Games" project is a research initiative that I have started
-                    to explore the Ghanaian perspective on Video Games and Video Game Development in general.
-                    Through comprehensive surveys and community engagement, I hope to be able to document perceptions of
-                    video games and game development across Ghana.</p>
-
-                <h4 class="project-title">Research Objectives</h4>
-                <ul class="project-list">
-                    <li>Map the landscape of gaming perception across different demographics in Ghana</li>
-                    <li>Identify barriers to entry for aspiring Ghanaian game developers</li>
-                    <li>Explore the potential of games as tools for cultural expression and education further down the
-                        line, if research bears fruit</li>
-                    <li>Assess market and sponsor opportunities for locally developed games reflecting Ghanaian
-                        narratives</li>
-                </ul>
-
-                <h4 class="project-title">Current Progress</h4>
-                <p class="project-text">I currently have started my first Survey to get the very brief and generalised
-                    idea and habits that we have around Gaming.
-                    It is going to be a long way from here, but I will keep at it. The survey touches on: Technological
-                    access, perception of
-                    game development as a career, and interest in games that represent local culture. Initial findings
-                    are yet to be finalized
-                    as I just started the Survey. So I really will appreciate you sharing or contributing to the
-                    G.A.V.G. project in anyway possible.</p>
-
-                <h4 class="project-title">Future Impact</h4>
-                <p class="project-text">Based on the research, I (or we if it comes to that) may make a purely
-                    Ghana-made Video Game.
-                    Other actual impactful actions may be taken, depending on whether I have overcome my shyness or
-                    built up the Confidence to be able to do that.
-                </p>
-
-                <div class="project-cta">
-                    <a href="index.html" class="btn">Participate in the Survey if You
-                        haven't. I will appreciate it, a lot.</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section-bg">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-                <p>Let's create something Exemplary Together</p>
-            </div>
-            <div class="contact-form-container">
-                <a href="https://chat.whatsapp.com/EjHVTT8TNuF92db2tLnGMf" class="footer-logo btn">
-                    <i class="fab fa-whatsapp"></i> The G.A.V.G. Whatsapp Platform
-                </a>
-            </div>
-        </section>
-
-        <footer>
-            <div class="footer-content">
-                <div class="social-links">
-                    <a href="https://wa.me/233552830731" class="social-link" target="_blank"><i
-                            class="fab fa-whatsapp"></i></a>
-                    <a href="https://x.com/BugadinsTrivia/" class="social-link" target="_blank"><i
-                            class="fab fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com/in/angelicgroove/" class="social-link" target="_blank"><i
-                            class="fab fa-linkedin"></i></a>
-                    <a href="https://https://www.youtube.com/channel/UCOXs9LhLX2hsz7WYtqNsLbQ" class="social-link"
-                        target="_blank"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.reddit.com/user/Angelagyeibi/" class="social-link" target="_blank"><i
-                            class="fab fa-reddit"></i></a>
-                </div>
-                <p class="copyright">&copy; 2025 Angelic Groove Portfolio. All rights reserved.</p>
-            </div>
-        </footer>
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobile-nav">
+        <div class="logo">
+            <span class="logo-text">ANGELIC GROOVE</span>
+        </div>
+        <div class="mobile-nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="portfolio.html" class="nav-link">Portfolio</a>
+            <a href="roadmap.html" class="nav-link">Roadmap</a>
+            <a href="other-games.html" class="nav-link">Games</a>
+            <a href="survey.html" class="nav-link">GAVG Survey</a>
+        </div>
     </div>
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <!-- Portfolio Header -->
+    <header class="portfolio-header">
+        <div class="container">
+            <h1 class="portfolio-title">My Game Projects</h1>
+            <p class="portfolio-description">
+                Explore my collection of Unity-based games and projects, with a special focus on
+                Paladins fan games and the Ghana And Video Games (GAVG) research initiative.
+            </p>
+            
+            <!-- Filter Buttons -->
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="paladins">Paladins Fan Games</button>
+                <button class="filter-btn" data-filter="gavg">GAVG Project</button>
+                <button class="filter-btn" data-filter="other">Other Games</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="container">
+            <div class="projects-container">
+                <!-- Project 1 -->
+                <div class="project-card" data-category="paladins">
+                    <div class="project-img-container"></div>
+                        <img src="https://via.placeholder.com/600x400/006B3F/FFFFFF?text=Bugadins" alt="Bugadins" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Bugadins</h3>
+                        <span class="project-category">Paladins Fan Game</span>
+                        <p class="project-description">
+                            A trivia game inspired by Paladins where players test their knowledge of champions, 
+                            abilities, and lore from the Paladins universe.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link demo-link">
+                                <i class="fa-solid fa-play"></i> Play Demo
+                            </a>
+                            <a href="#" class="project-link code-link">
+                                <i class="fa-solid fa-code"></i> View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-category="paladins">
+                    <div class="project-img-container">
+                        <img src="https://via.placeholder.com/600x400/CE1126/FFFFFF?text=Realm+Defenders" alt="Realm Defenders" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Realm Defenders</h3>
+                        <span class="project-category">Paladins Fan Game</span>
+                        <p class="project-description">
+                            A tower defense game featuring your favorite Paladins champions as 
+                            defenders against waves of enemies from the Realm.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link demo-link">
+                                <i class="fa-solid fa-play"></i> Play Demo
+                            </a>
+                            <a href="#" class="project-link code-link">
+                                <i class="fa-solid fa-code"></i> View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-category="gavg">
+                    <div class="project-img-container">
+                        <img src="https://via.placeholder.com/600x400/FCD116/000000?text=GAVG+Survey+App" alt="GAVG Survey App" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">GAVG Survey Application</h3>
+                        <span class="project-category">Research Tool</span>
+                        <p class="project-description">
+                            Interactive survey application designed to collect data about gaming habits and 
+                            preferences among Ghanaians for the Ghana And Video Games research initiative.
+                        </p>
+                        <div class="project-links">
+                            <a href="survey.html" class="project-link demo-link">
+                                <i class="fa-solid fa-poll"></i> Take Survey
+                            </a>
+                            <a href="#" class="project-link code-link">
+                                <i class="fa-solid fa-chart-pie"></i> View Results
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card" data-category="gavg">
+                    <div class="project-img-container">
+                        <img src="https://via.placeholder.com/600x400/006B3F/FFFFFF?text=Ghana+Gaming+Database" alt="Ghana Gaming Database" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Ghana Gaming Database</h3>
+                        <span class="project-category">GAVG Project</span>
+                        <p class="project-description">
+                            A comprehensive database of Ghanaian game developers, gaming communities, 
+                            and locally developed games to support the growth of the industry.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link demo-link">
+                                <i class="fa-solid fa-database"></i> Explore Database
+                            </a>
+                            <a href="#" class="project-link code-link">
+                                <i class="fa-solid fa-circle-info"></i> Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card" data-category="other">
+                    <div class="project-img-container"></div>
+                        <img src="https://via.placeholder.com/600x400/CE1126/FFFFFF?text=Unity+Prototypes" alt="Unity Prototypes" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Unity Gameplay Prototypes</h3>
+                        <span class="project-category">Game Development</span>
+                        <p class="project-description">
+                            A collection of gameplay mechanic prototypes developed in Unity, showcasing various 
+                            interaction patterns and game systems.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link demo-link">
+                                <i class="fa-solid fa-play"></i> View Demos
+                            </a>
+                            <a href="#" class="project-link code-link"></a>
+                                <i class="fa-brands fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card" data-category="other">
+                    <div class="project-img-container">
+                        <img src="https://via.placeholder.com/600x400/FCD116/000000?text=Mobile+Game+Experiments" alt="Mobile Game Experiments" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Mobile Game Experiments</h3>
+                        <span class="project-category">Mobile Development</span>
+                        <p class="project-description"></p>
+                            Experiments with mobile game development, including touch controls, 
+                            accelerometer-based gameplay, and mobile UI design patterns.
+                        </p>
+                        <div class="project-links"></div>
+                            <a href="#" class="project-link demo-link">
+                                <i class="fa-solid fa-mobile-screen"></i> View Projects
+                            </a>
+                            <a href="#" class="project-link code-link"></a>
+                                <i class="fa-solid fa-code"></i> View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Load More Projects Button -->
+            <div class="more-projects">
+                <button class="more-btn">
+                    <i class="fa-solid fa-plus"></i> Load More Projects
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="section-header text-center mb-12">
+                <h2 class="portfolio-title">Get In Touch</h2>
+                <p class="portfolio-description">
+                    Have a question or want to collaborate? Send me a message and I'll get back to you as soon as possible.
+                </p>
+            </div>
+            
+            <div class="contact-form-container">
+                <form id="contact-form" class="contact-form">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="name" class="block mb-2 text-sm font-medium">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" required 
+                                class="w-full px-4 py-3 rounded-lg border border-solid border-gray-300 focus:border-green-500 focus:outline-none"
+                                style="background-color: var(--card-bg); color: var(--text-primary); border-color: var(--border);">
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium">Your Email</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required
+                                class="w-full px-4 py-3 rounded-lg border border-solid border-gray-300 focus:border-green-500 focus:outline-none"
+                                style="background-color: var(--card-bg); color: var(--text-primary); border-color: var(--border);">
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="subject" class="block mb-2 text-sm font-medium">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="What is this regarding?" required
+                            class="w-full px-4 py-3 rounded-lg border border-solid border-gray-300 focus:border-green-500 focus:outline-none"
+                            style="background-color: var(--card-bg); color: var(--text-primary); border-color: var(--border);">
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block mb-2 text-sm font-medium">Message</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Your message here..." required
+                            class="w-full px-4 py-3 rounded-lg border border-solid border-gray-300 focus:border-green-500 focus:outline-none resize-none"
+                            style="background-color: var(--card-bg); color: var(--text-primary); border-color: var(--border);"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="px-8 py-3 rounded-full font-medium text-white transition-all"
+                            style="background: linear-gradient(135deg, var(--red), var(--green));">
+                            <i class="fa-solid fa-paper-plane mr-2"></i>Send Message
+                        </button>
+                    </div>
+                    <div id="form-status" class="mt-4 text-center hidden"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2023 Angelic Groove. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back To Top Button -->
+    <a href="#" class="back-to-top" id="back-to-top"></a>
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
 
     <script>
-        // Simple mobile menu toggle
-        const menuBtn = document.querySelector('.menu-btn');
-        const navLinks = document.querySelector('.nav-links');
+        document.addEventListener('DOMContentLoaded', function () {
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const sunIcon = document.querySelector('.sun-icon');
+            const moonIcon = document.querySelector('.moon-icon');
 
-        menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-        });
+            // Theme management
+            const initializeTheme = () => {
+                try {
+                    const savedTheme = localStorage.getItem('theme');
+                    if (savedTheme) {
+                        document.documentElement.setAttribute('data-theme', savedTheme);
+                        updateThemeUI(savedTheme);
+                    } else {
+                        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                        const initialTheme = prefersDark ? 'dark' : 'light';
+                        document.documentElement.setAttribute('data-theme', initialTheme);
+                        updateThemeUI(initialTheme);
+                    }
+                } catch (error) {
+                    console.error('Error accessing localStorage:', error);
+                }
+            };
 
-        // Close menu when clicking on a link (mobile)
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuBtn.textContent = '☰';
+            const updateThemeUI = (theme) => {
+                if (theme === 'dark') {
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                } else {
+                    moonIcon.classList.add('hidden');
+                    sunIcon.classList.remove('hidden');
+                }
+            };
+
+            // Theme toggle functionality
+            themeToggle.addEventListener('click', function () {
+                try {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateThemeUI(newTheme);
+                } catch (error) {
+                    console.error('Error saving theme preference:', error);
+                }
             });
-        });
 
-        // Navbar background change on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                navbar.style.padding = '1rem 5%';
-                navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
-            } else {
-                navbar.style.padding = '2rem 5%';
-                navbar.style.boxShadow = 'none';
-            }
+            // Mobile menu functionality
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileOverlay = document.getElementById('mobile-overlay');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-links .nav-link');
+
+            menuBtn.addEventListener('click', () => {
+                mobileNav.classList.toggle('active');
+                mobileOverlay.classList.toggle('active');
+                if (mobileNav.classList.contains('active')) {
+                    menuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                } else {
+                    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+                }
+            });
+
+            mobileOverlay.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            });
+
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.remove('active');
+                    mobileOverlay.classList.remove('active');
+                    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+                });
+            });
+
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Back to top button
+            const backToTopBtn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('active');
+                } else {
+                    backToTopBtn.classList.remove('active');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Portfolio filtering
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    
+                    // Get filter value
+                    const filterValue = btn.getAttribute('data-filter');
+                    
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Load more projects button (demo functionality)
+            const loadMoreBtn = document.querySelector('.more-btn');
+            loadMoreBtn.addEventListener('click', function() {
+                // In a real implementation, this would fetch more projects
+                // For now, let's just show an alert
+                alert('In a full implementation, this would load more projects from the server.');
+            });
+
+            // Contact form handling
+            const contactForm = document.getElementById('contact-form');
+            const formStatus = document.getElementById('form-status');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                formStatus.classList.remove('hidden');
+                formStatus.innerHTML = '<p class="text-yellow-500"><i class="fa-solid fa-spinner fa-spin"></i> Sending message...</p>';
+                
+                // Get form data
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // Create message object
+                const contactMessage = {
+                    name: name,
+                    email: email,
+                    subject: subject,
+                    message: message,
+                    timestamp: Date.now()
+                };
+                
+                // Send to Firebase
+                try {
+                    const firebaseUrl = 'https://ghana-and-video-games-survey-default-rtdb.europe-west1.firebasedatabase.app/contact-messages.json';
+                    
+                    fetch(firebaseUrl, {
+                        method: 'POST',
+                        body: JSON.stringify(contactMessage)
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            formStatus.innerHTML = '<p style="color: var(--green);"><i class="fa-solid fa-check-circle"></i> Your message has been sent successfully!</p>';
+                            contactForm.reset();
+                            
+                            // Hide success message after 5 seconds
+                            setTimeout(() => {
+                                formStatus.classList.add('hidden');
+                            }, 5000);
+                        } else {
+                            formStatus.innerHTML = '<p style="color: var(--red);"><i class="fa-solid fa-triangle-exclamation"></i> There was a problem sending your message. Please try again later.</p>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        formStatus.innerHTML = '<p style="color: var(--red);"><i class="fa-solid fa-triangle-exclamation"></i> There was a problem sending your message. Please try again later.</p>';
+                    });
+                } catch (error) {
+                    console.error('Error:', error);
+                    formStatus.innerHTML = '<p style="color: var(--red);"><i class="fa-solid fa-triangle-exclamation"></i> There was a problem sending your message. Please try again later.</p>';
+                }
+            });
+            
+            // Initialize theme
+            initializeTheme();
         });
     </script>
 </body>
