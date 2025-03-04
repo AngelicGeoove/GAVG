@@ -409,7 +409,7 @@
             content: '✓';
             position: absolute;
             right: 15px;
-            color: var(--green);
+            color: var (--green);
             font-weight: bold;
         }
 
@@ -570,6 +570,49 @@
 
             .btn+.btn {
                 margin-top: 0.5rem;
+            }
+        }
+
+        /* Fixed button container for all questions */
+        .flex.justify-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            position: relative;
+            width: 100%;
+        }
+
+        /* Keep previous button left and next button right */
+        .prev-btn {
+            position: relative;
+            left: 0;
+            margin-right: auto;
+        }
+
+        .next-btn {
+            position: relative;
+            right: 0;
+            margin-left: auto;
+        }
+
+        /* Fix for mobile layout */
+        @media (max-width: 768px) {
+            .flex.justify-between {
+                flex-direction: row !important;
+                /* Override the column direction */
+                gap: 0.5rem;
+            }
+
+            .btn,
+            .ghana-btn {
+                /* Make buttons smaller on mobile but keep them side by side */
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+                width: auto !important;
+                /* Override the 100% width */
+                min-width: 100px;
+                margin-bottom: 0 !important;
             }
         }
     </style>
@@ -1534,6 +1577,29 @@
                     menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
                 });
             });
+
+            // Special handling for Question 8
+            const question8Next = document.querySelector('.question-container[data-question="8"] .next-btn');
+            if (question8Next) {
+                question8Next.addEventListener('click', function (e) {
+                    // Get required radio group
+                    const requiredRadio = document.querySelector('input[name="dev-interest"]:checked');
+
+                    if (requiredRadio) {
+                        // Manually navigate to next question if validation passes
+                        document.querySelector('.question-container[data-question="8"]').classList.remove('active');
+                        currentQuestion = 9; // Force to question 9
+                        document.querySelector('.question-container[data-question="9"]').classList.add('active');
+                        updateProgress();
+                    } else {
+                        // Show validation message
+                        alert("Please select an option for the first question");
+                    }
+
+                    // Prevent default click handler
+                    e.stopPropagation();
+                }, true);
+            }
         });
     </script>
     <script>
