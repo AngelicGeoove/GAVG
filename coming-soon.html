@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon | Ghana And Video Games</title>
+    <link rel="icon" type="image/png" href="Logo Coin.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --red: #CE1126;
+            --yellow: #FCD116;
+            --green: #006B3F;
+            --black: #000000;
+            --white: #FFFFFF;
+            --dark: #0A0A0A;
+            --light: #F8F9FA;
+            --accent: #00E5FF;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0D0D0D;
+            --bg-secondary: #121212;
+            --text-primary: #F8F9FA;
+            --text-secondary: #B0B0B0;
+            --card-bg: #1A1A1A;
+            --border: #2A2A2A;
+            --input-bg: #2D3748;
+            --input-text: #F8F9FA;
+            --input-border: #4A5568;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #F8F9FA;
+            --bg-secondary: #FFFFFF;
+            --text-primary: #111111;
+            --text-secondary: #555555;
+            --card-bg: #FFFFFF;
+            --border: #E0E0E0;
+            --input-bg: #FFFFFF;
+            --input-text: #111111;
+            --input-border: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: var(--transition);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .theme-toggle:hover {
+            color: var(--yellow);
+            transform: rotate(30deg);
+        }
+
+        .coming-soon-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .coming-soon-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            padding: 3rem 2rem;
+        }
+
+        .coming-soon-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--red), var(--yellow), var(--green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .coming-soon-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .flag-logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem auto 3rem;
+        }
+        
+        .logo-coin-container {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-coin-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ghana-flag-animation {
+            width: 150px;
+            height: 90px;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .flag-stripe {
+            width: 100%;
+            height: 30px;
+        }
+
+        .red-stripe {
+            background-color: var(--red);
+        }
+
+        .yellow-stripe {
+            background-color: var(--yellow);
+            position: relative;
+        }
+
+        .black-star-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            background-color: var(--black);
+            z-index: 1;
+        }
+
+        .green-stripe {
+            background-color: var(--green);
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--red), var(--yellow), var(--green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .notify-form {
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 50px;
+            border: 2px solid var(--input-border);
+            background-color: var(--input-bg);
+            color: var(--input-text);
+            font-family: 'Poppins', sans-serif;
+            padding-right: 120px;
+        }
+
+        input[type="email"]:focus {
+            outline: none;
+            border-color: var(--green);
+            box-shadow: 0 0 0 2px rgba(0, 107, 63, 0.2);
+        }
+
+        .notify-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: linear-gradient(135deg, var(--red), var(--green));
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            padding: 0.5rem 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .notify-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            border-color: var(--yellow);
+            color: var(--yellow);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-text {
+            margin-top: 3rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .survey-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--red), var(--green));
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .survey-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 640px) {
+            .coming-soon-title {
+                font-size: 1.8rem;
+            }
+
+            .coming-soon-subtitle {
+                font-size: 1rem;
+            }
+
+            .countdown-container {
+                gap: 0.5rem;
+            }
+
+            .countdown-item {
+                min-width: 60px;
+            }
+
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+
+            .notify-btn {
+                position: static;
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+
+            .flag-logo-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .logo-coin-container {
+                width: 70px;
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fa-regular fa-sun sun-icon"></i>
+        <i class="fa-regular fa-moon moon-icon hidden"></i>
+    </button>
+
+    <div class="coming-soon-container">
+        <div class="coming-soon-card">
+            <div class="flag-logo-container">
+                <div class="ghana-flag-animation">
+                    <div class="flag-stripe red-stripe"></div>
+                    <div class="flag-stripe yellow-stripe">
+                        <div class="black-star-center"></div>
+                    </div>
+                    <div class="flag-stripe green-stripe"></div>
+                </div>
+                
+                <div class="logo-coin-container">
+                    <img src="Logo Coin.png" alt="GAVG Logo Coin">
+                </div>
+            </div>
+
+            <h1 class="coming-soon-title">Ghana And Video Games</h1>
+            <p class="coming-soon-subtitle">The website is currently under construction. Still working hard to bring you
+                an amazing experience that will hopefully one day, celebrate gaming in Ghana.</p>
+
+            <!-- Countdown Timer -->
+            <div class="countdown-container" id="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+
+            <!-- Notify Form -->
+            <div class="notify-form">
+                <div class="form-group">
+                    <input type="email" placeholder="Enter your email to get notified when it launches" id="notify-email">
+                    <button class="notify-btn" id="notify-btn">Notify Me</button>
+                </div>
+                <div id="form-status" class="text-center hidden"></div>
+            </div>
+
+            <p style = "font-weight: bold;"> Want to know what the Ghana And Video Games Project is all about? Read More about it through the link below!</p>
+            <!-- Take Survey Link -->
+            <a href="index.html" class="survey-link">
+                <i class="fa-solid fa-clipboard-list mr-2"></i>My Portfolio
+            </a>
+            <br>
+            (Also Under Contruction...)
+
+            <br>
+            <p style="font-weight: bold;">Or you can contact me directly through my social links below</p>
+
+            <!-- Social Links -->
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+            </div>
+
+            <p class="footer-text">© 2025 Angelic Groove. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const sunIcon = document.querySelector('.sun-icon');
+            const moonIcon = document.querySelector('.moon-icon');
+
+            // Theme management
+            const initializeTheme = () => {
+                try {
+                    const savedTheme = localStorage.getItem('theme');
+                    if (savedTheme) {
+                        document.documentElement.setAttribute('data-theme', savedTheme);
+                        updateThemeUI(savedTheme);
+                    } else {
+                        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                        const initialTheme = prefersDark ? 'dark' : 'light';
+                        document.documentElement.setAttribute('data-theme', initialTheme);
+                        updateThemeUI(initialTheme);
+                    }
+                } catch (error) {
+                    console.error('Error accessing localStorage:', error);
+                }
+            };
+
+            const updateThemeUI = (theme) => {
+                if (theme === 'dark') {
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                } else {
+                    moonIcon.classList.add('hidden');
+                    sunIcon.classList.remove('hidden');
+                }
+            };
+
+            // Theme toggle functionality
+            themeToggle.addEventListener('click', function () {
+                try {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateThemeUI(newTheme);
+                } catch (error) {
+                    console.error('Error saving theme preference:', error);
+                }
+            });
+
+            // Initialize theme
+            initializeTheme();
+
+            // Countdown Timer
+            const countdownDate = new Date("March 7, 2025 15:00:00").getTime();
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+
+                // Calculate days, hours, minutes and seconds
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result
+                document.getElementById("days").innerText = String(days).padStart(2, '0');
+                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+            }
+
+            // Update the countdown every 1 second
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+
+            // Email notification form
+            const notifyBtn = document.getElementById('notify-btn');
+            const formStatus = document.getElementById('form-status');
+
+            try {
+                // Initialize Firebase
+                const firebaseConfig = {
+                    apiKey: "AIzaSyCAzQ-r7vhCLe70lLMHFVAcRzWE22LmOJA",
+                    authDomain: "ghana-and-video-games-survey.firebaseapp.com",
+                    databaseURL: "https://ghana-and-video-games-survey-default-rtdb.europe-west1.firebasedatabase.app",
+                    projectId: "ghana-and-video-games-survey",
+                };
+                firebase.initializeApp(firebaseConfig);
+            } catch (error) {
+                console.error('Firebase initialization error:', error);
+            }
+
+            notifyBtn.addEventListener('click', function () {
+                const email = document.getElementById('notify-email').value;
+
+                // Basic validation
+                if (!email || !email.includes('@') || !email.includes('.')) {
+                    formStatus.classList.remove('hidden');
+                    formStatus.innerHTML = '<p style="color: var(--red);">Please enter a valid email address.</p>';
+                    return;
+                }
+
+                formStatus.classList.remove('hidden');
+                formStatus.innerHTML = '<p style="color: var(--yellow);">Subscribing you...</p>';
+
+                try {
+                    // Send to Firebase
+                    firebase.database().ref('email-subscribers').push({
+                        email: email,
+                        timestamp: new Date().toISOString()
+                    })
+                        .then(() => {
+                            formStatus.innerHTML = '<p style="color: var(--green);">Thank you! We\'ll notify you when we launch.</p>';
+                            document.getElementById('notify-email').value = '';
+
+                            // Hide success message after 5 seconds
+                            setTimeout(() => {
+                                formStatus.classList.add('hidden');
+                            }, 5000);
+                        })
+                        .catch(error => {
+                            console.error('Error saving email:', error);
+                            formStatus.innerHTML = '<p style="color: var(--red);">There was an error. Please try again later.</p>';
+                        });
+                } catch (error) {
+                    console.error('Error:', error);
+                    formStatus.innerHTML = '<p style="color: var(--red);">There was an error. Please try again later.</p>';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

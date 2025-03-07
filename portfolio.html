@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --red: #CE1126;
@@ -264,9 +265,11 @@
 
         .projects-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
+            /* Change to fixed 3-column grid */
             gap: 2rem;
             margin-bottom: 4rem;
+            justify-content: center;
         }
 
         .project-card {
@@ -439,11 +442,15 @@
         @media (max-width: 991px) {
             .projects-container {
                 grid-template-columns: repeat(2, 1fr);
+                /* 2 columns on tablets */
+                gap: 1.5rem;
             }
         }
 
         @media (max-width: 768px) {
-            .nav-links, .nav-buttons {
+
+            .nav-links,
+            .nav-buttons {
                 display: none;
             }
 
@@ -456,13 +463,117 @@
             }
 
             .projects-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: minmax(280px, 450px);
+                /* Single column with min/max width */
+                justify-content: center;
             }
 
             .project-card {
                 max-width: 450px;
                 margin: 0 auto;
             }
+        }
+
+        /* Social Links Section */
+        .social-links-section {
+            padding: 4rem 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .social-icons-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            padding: 1rem;
+            border-radius: 12px;
+            background-color: var(--card-bg);
+            min-width: 100px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-icon i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            color: var(--yellow);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-icon:hover i {
+            transform: scale(1.1);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        /* Contact social links */
+        .contact-social-links {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .contact-social-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .contact-social-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-social-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .contact-social-item:hover {
+            transform: translateY(-3px);
+            border-color: var (--yellow);
+        }
+
+        .contact-social-item i {
+            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -511,10 +622,10 @@
         <div class="container">
             <h1 class="portfolio-title">My Game Projects</h1>
             <p class="portfolio-description">
-                Explore my collection of Unity-based games and projects, with a special focus on
-                Paladins fan games and the Ghana And Video Games (GAVG) research initiative.
+                Explore my Game Development Journey through the cards below, and check back seldomly. It's only
+                going to get bigger and bigger.
             </p>
-            
+
             <!-- Filter Buttons -->
             <div class="filter-container">
                 <button class="filter-btn active" data-filter="all">All Projects</button>
@@ -531,22 +642,22 @@
             <div class="projects-container">
                 <!-- Project 1 -->
                 <div class="project-card" data-category="paladins">
-                    <div class="project-img-container"></div>
-                        <img src="images/Paladins Trivia Main.png" alt="Bugadins" class="project-img">
+                    <div class="project-img-container">
+                        <img src="/images/Paladins Trivia Main.png" alt="Bugadins" class="project-img">
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Bugadins</h3>
+                        <h3 class="project-title">Paladins Trivia</h3>
                         <span class="project-category">Paladins Fan Game</span>
+                        <span class="project-category">Development In Progress</span>
                         <p class="project-description">
-                            A trivia game inspired by Paladins where players test their knowledge of champions, 
-                            abilities, and lore from the Paladins universe.
+                            A trivia fan game that I am developing for Paladins. Felt obligated to make it
+                            when the first Google Forms game in the same vein that I made for the game got
+                            a little bit of attention. My first ever Unity Game is this. I think this is the
+                            third time that I am remaking this game.
                         </p>
                         <div class="project-links">
-                            <a href="#" class="project-link demo-link">
+                            <a href="https://paladinstriviaguy.itch.io/paladins-trivia" class="project-link demo-link">
                                 <i class="fa-solid fa-play"></i> Play Demo
-                            </a>
-                            <a href="#" class="project-link code-link">
-                                <i class="fa-solid fa-code"></i> View Details
                             </a>
                         </div>
                     </div>
@@ -555,144 +666,141 @@
                 <!-- Project 2 -->
                 <div class="project-card" data-category="paladins">
                     <div class="project-img-container">
-                        <img src="/images/Realm Runners Logo.png" alt="Realm Defenders" class="project-img">
+                        <img src="/images/Risk of Realms.png" alt="Risk of Realms" class="project-img">
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Realm Defenders</h3>
+                        <h3 class="project-title">Risk Of Realms</h3>
                         <span class="project-category">Paladins Fan Game</span>
+                        <span class="project-category">Development Paused</span>
                         <p class="project-description">
-                            A tower defense game featuring your favorite Paladins champions as 
-                            defenders against waves of enemies from the Realm.
+                            Paladins meets Risk of Rain 2. Found that I wanted to combine 2 of the games that
+                            I daily into another Paladins fan game. I also wanted to see how much of a challenge
+                            that I could apply on myself and how much of it I can accomplish. I am still in the
+                            process of making this one, but I have paused it because looking at the scope that the
+                            game may most likely cover, my laptop just can't handle it. To avoid being frustrated
+                            over something that I may or may not be able to accomplish, I have paused on
+                            development of this one to focus on the one below, which is the Realm Runners.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://paladinstriviaguy.itch.io/risk-of-realms" class="project-link demo-link">
+                                <i class="fa-solid fa-play"></i> Play Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Project 5 -->
+                <div class="project-card" data-category="paladins">
+                    <div class="project-img-container">
+                        <img src="/images/Realm Runners Logo.png" alt="Unity Prototypes" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Realm Runners</h3>
+                        <span class="project-category">Paladins Fan Game</span>
+                        <span class="project-category">Active Development In Progress</span>
+                        <p class="project-description">
+                            At the moment with my current resources, this is one of the games that I am putting
+                            all my effort into. Paladins meets Subway Surfers. Just copying the game will be too
+                            bland and uninspiring. So i have been adding some more features as they come. Boss fights,
+                            unique powerups and a dynamic map system are the plans that I have for this game. I've
+                            implemented
+                            the basis for each of these unique mechanics. Now I just need to sit down and make a lot of
+                            modules to vary the difficulty and engagement in my game. It is going to be Epic. I just
+                            know it.
+                            You can try the current demo that I have by clicking the Play Demo button below.
                         </p>
                         <div class="project-links">
                             <a href="#" class="project-link demo-link">
                                 <i class="fa-solid fa-play"></i> Play Demo
-                            </a>
-                            <a href="#" class="project-link code-link">
-                                <i class="fa-solid fa-code"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card" data-category="gavg">
-                    <div class="project-img-container">
-                        <img src="Logo Coin.png" alt="GAVG Survey App" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">GAVG Survey Application</h3>
-                        <span class="project-category">Research Tool</span>
-                        <p class="project-description">
-                            Interactive survey application designed to collect data about gaming habits and 
-                            preferences among Ghanaians for the Ghana And Video Games research initiative.
-                        </p>
-                        <div class="project-links">
-                            <a href="survey.html" class="project-link demo-link">
-                                <i class="fa-solid fa-poll"></i> Take Survey
-                            </a>
-                            <a href="#" class="project-link code-link">
-                                <i class="fa-solid fa-chart-pie"></i> View Results
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card" data-category="gavg">
-                    <div class="project-img-container">
-                        <img src="https://via.placeholder.com/600x400/006B3F/FFFFFF?text=Ghana+Gaming+Database" alt="Ghana Gaming Database" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Ghana Gaming Database</h3>
-                        <span class="project-category">GAVG Project</span>
-                        <p class="project-description">
-                            A comprehensive database of Ghanaian game developers, gaming communities, 
-                            and locally developed games to support the growth of the industry.
-                        </p>
-                        <div class="project-links">
-                            <a href="#" class="project-link demo-link">
-                                <i class="fa-solid fa-database"></i> Explore Database
-                            </a>
-                            <a href="#" class="project-link code-link">
-                                <i class="fa-solid fa-circle-info"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project-card" data-category="other">
-                    <div class="project-img-container"></div>
-                        <img src="https://via.placeholder.com/600x400/CE1126/FFFFFF?text=Unity+Prototypes" alt="Unity Prototypes" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Unity Gameplay Prototypes</h3>
-                        <span class="project-category">Game Development</span>
-                        <p class="project-description">
-                            A collection of gameplay mechanic prototypes developed in Unity, showcasing various 
-                            interaction patterns and game systems.
-                        </p>
-                        <div class="project-links">
-                            <a href="#" class="project-link demo-link">
-                                <i class="fa-solid fa-play"></i> View Demos
-                            </a>
-                            <a href="#" class="project-link code-link"></a>
-                                <i class="fa-brands fa-github"></i> View Code
                             </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 6 -->
-                <div class="project-card" data-category="other">
+                <div class="project-card" data-category="paladins">
                     <div class="project-img-container">
-                        <img src="https://via.placeholder.com/600x400/FCD116/000000?text=Mobile+Game+Experiments" alt="Mobile Game Experiments" class="project-img">
+                        <img src="/images/Paladins Flappy Bird.png" alt="Mobile Game Experiments" class="project-img">
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Mobile Game Experiments</h3>
-                        <span class="project-category">Mobile Development</span>
-                        <p class="project-description"></p>
-                            Experiments with mobile game development, including touch controls, 
-                            accelerometer-based gameplay, and mobile UI design patterns.
+                        <h3 class="project-title">Paladins Flappy Bird</h3>
+                        <span class="project-category">Paladins Fan Game</span>
+                        <span class="project-category">Fully Released</span>
+                        <span class="project-category">Mobile and PC</span>
+                        <p class="project-description">
+                            This was the second game that I ever made for Paladins that I have actually completed. I
+                            know,
+                            it's a miracle. I had to remake this game a second time. The first one was one of the games
+                            that I made when I started my games development journey. Safe to say, this one will always
+                            hold a special place in my heart. Both versions are available to play below. I have both a
+                            PC version and Mobile version of this one. Contact me to play the mobile version if you are
+                            interested.
                         </p>
-                        <div class="project-links"></div>
+                        <div class="project-links">
                             <a href="#" class="project-link demo-link">
-                                <i class="fa-solid fa-mobile-screen"></i> View Projects
+                                <i class="fa-solid fa-play"></i> Play Latest Version
                             </a>
-                            <a href="#" class="project-link code-link"></a>
-                                <i class="fa-solid fa-code"></i> View Details
+                            <a href="https://paladinstriviaguy.itch.io/palasidescroller" class="project-link more-btn">
+                                <i class="fa-solid fa-play"></i> Play Version 1
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="gavg">
+                    <div class="project-img-container">
+                        <img src="Logo Coin.png" alt="Risk of Realms" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Ghana And Video Games Project</h3>
+                        <span class="project-category">GAVG</span>
+                        <span class="project-category">Research</span>
+                        <p class="project-description">
+                            The GAVG Project is a Project that I am launching on 7th March. It is a project
+                            that I have some undisclosed objectives for. But currently, the primary goal is
+                            to catalog the Ghanaian views on Video Games and Video Game Development in extension.
+                            Viewing it from afar, this feels like a huge undertaking, but I am going through it
+                            nonetheless. I would appreciate Your input in the GAVG Survey, if you haven't that is.
+                        </p>
+                        <div class="project-links">
+                            <a href="/survey.html" class="project-link demo-link">
+                                <i class="fa-solid fa-book"></i> Take G.A.V.G. Survey
+                            </a>
+                            <a href="/survey.html" class="project-link demo-link">
+                                <i class="fa-solid fab fa-whatsapp"></i> Join G.A.V.G. Channel
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Load More Projects Button -->
             <div class="more-projects">
-                <button class="more-btn">
-                    <i class="fa-solid fa-plus"></i> Load More Projects
+                <button class="more-btn" onclick="window.location.href = 'other-games.html';">
+                    <i class="fa-solid fa-plus"></i> My Other <b>4</b> Game Projects
                 </button>
             </div>
         </div>
     </section>
-    
+
     <!-- Contact Form Section -->
     <section class="contact-form-section">
         <div class="container">
             <div class="section-header text-center mb-12">
                 <h2 class="portfolio-title">Get In Touch</h2>
                 <p class="portfolio-description">
-                    Have a question or want to collaborate? Send me a message and I'll get back to you as soon as possible.
+                    Have a question, want to collaborate or support? Send me a message and I'll get back to you as soon
+                    as possible.
                 </p>
             </div>
-            
+
             <div class="contact-form-container">
                 <form id="contact-form" class="contact-form">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
                             <label for="name" class="block mb-2 text-sm font-medium">Your Name</label>
-                            <input type="text" id="name" name="name" placeholder="Enter your name" required 
+                            <input type="text" id="name" name="name" placeholder="Enter your name" required
                                 class="w-full px-4 py-3 rounded-lg border border-solid border-gray-300 focus:border-green-500 focus:outline-none"
                                 style="background-color: var(--card-bg); color: var(--text-primary); border-color: var(--border);">
                         </div>
@@ -715,14 +823,45 @@
                             class="w-full px-4 py-3 rounded-lg border border-solid border-gray-300 focus:border-green-500 focus:outline-none resize-none"
                             style="background-color: var(--card-bg); color: var(--text-primary); border-color: var(--border);"></textarea>
                     </div>
+                    
+                    <!-- Add submit button -->
                     <div class="text-center">
                         <button type="submit" class="px-8 py-3 rounded-full font-medium text-white transition-all"
                             style="background: linear-gradient(135deg, var(--red), var(--green));">
                             <i class="fa-solid fa-paper-plane mr-2"></i>Send Message
                         </button>
                     </div>
+                    
+                    <!-- Status message div -->
                     <div id="form-status" class="mt-4 text-center hidden"></div>
                 </form>
+                
+                <!-- Add social links section -->
+                <div class="contact-social-links">
+                    <h3 class="contact-social-title">Or connect with me on social media:</h3>
+                    <div class="contact-social-container">
+                        <a href="#" class="contact-social-item">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                        <a href="#" class="contact-social-item">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="#" class="contact-social-item">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube</span>
+                        </a>
+                        <a href="#" class="contact-social-item">
+                            <i class="fab fa-discord"></i>
+                            <span>Discord</span>
+                        </a>
+                        <a href="#" class="contact-social-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -730,13 +869,13 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p class="footer-text">© 2023 Angelic Groove. All rights reserved.</p>
+            <p class="footer-text">© 2025 Angelic Groove. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- Back To Top Button -->
     <a href="#" class="back-to-top" id="back-to-top"></a>
-        <i class="fa-solid fa-arrow-up"></i>
+    <i class="fa-solid fa-arrow-up"></i>
     </a>
 
     <script>
@@ -845,22 +984,22 @@
                     behavior: 'smooth'
                 });
             });
-            
+
             // Portfolio filtering
             const filterBtns = document.querySelectorAll('.filter-btn');
             const projectCards = document.querySelectorAll('.project-card');
-            
+
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     // Remove active class from all buttons
                     filterBtns.forEach(btn => btn.classList.remove('active'));
-                    
+
                     // Add active class to clicked button
                     btn.classList.add('active');
-                    
+
                     // Get filter value
                     const filterValue = btn.getAttribute('data-filter');
-                    
+
                     // Filter projects
                     projectCards.forEach(card => {
                         if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
@@ -871,10 +1010,10 @@
                     });
                 });
             });
-            
+
             // Load more projects button (demo functionality)
             const loadMoreBtn = document.querySelector('.more-btn');
-            loadMoreBtn.addEventListener('click', function() {
+            loadMoreBtn.addEventListener('click', function () {
                 // In a real implementation, this would fetch more projects
                 // For now, let's just show an alert
                 alert('In a full implementation, this would load more projects from the server.');
@@ -884,19 +1023,19 @@
             const contactForm = document.getElementById('contact-form');
             const formStatus = document.getElementById('form-status');
 
-            contactForm.addEventListener('submit', function(e) {
+            contactForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-                
+
                 // Show loading state
                 formStatus.classList.remove('hidden');
                 formStatus.innerHTML = '<p class="text-yellow-500"><i class="fa-solid fa-spinner fa-spin"></i> Sending message...</p>';
-                
+
                 // Get form data
                 const name = document.getElementById('name').value;
                 const email = document.getElementById('email').value;
                 const subject = document.getElementById('subject').value;
                 const message = document.getElementById('message').value;
-                
+
                 // Create message object
                 const contactMessage = {
                     name: name,
@@ -905,38 +1044,38 @@
                     message: message,
                     timestamp: Date.now()
                 };
-                
+
                 // Send to Firebase
                 try {
                     const firebaseUrl = 'https://ghana-and-video-games-survey-default-rtdb.europe-west1.firebasedatabase.app/contact-messages.json';
-                    
+
                     fetch(firebaseUrl, {
                         method: 'POST',
                         body: JSON.stringify(contactMessage)
                     })
-                    .then(response => {
-                        if (response.ok) {
-                            formStatus.innerHTML = '<p style="color: var(--green);"><i class="fa-solid fa-check-circle"></i> Your message has been sent successfully!</p>';
-                            contactForm.reset();
-                            
-                            // Hide success message after 5 seconds
-                            setTimeout(() => {
-                                formStatus.classList.add('hidden');
-                            }, 5000);
-                        } else {
+                        .then(response => {
+                            if (response.ok) {
+                                formStatus.innerHTML = '<p style="color: var(--green);"><i class="fa-solid fa-check-circle"></i> Your message has been sent successfully!</p>';
+                                contactForm.reset();
+
+                                // Hide success message after 5 seconds
+                                setTimeout(() => {
+                                    formStatus.classList.add('hidden');
+                                }, 5000);
+                            } else {
+                                formStatus.innerHTML = '<p style="color: var(--red);"><i class="fa-solid fa-triangle-exclamation"></i> There was a problem sending your message. Please try again later.</p>';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
                             formStatus.innerHTML = '<p style="color: var(--red);"><i class="fa-solid fa-triangle-exclamation"></i> There was a problem sending your message. Please try again later.</p>';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        formStatus.innerHTML = '<p style="color: var(--red);"><i class="fa-solid fa-triangle-exclamation"></i> There was a problem sending your message. Please try again later.</p>';
-                    });
+                        });
                 } catch (error) {
                     console.error('Error:', error);
                     formStatus.innerHTML = '<p style="color: var(--red);"><i class="fa-solid fa-triangle-exclamation"></i> There was a problem sending your message. Please try again later.</p>';
                 }
             });
-            
+
             // Initialize theme
             initializeTheme();
         });

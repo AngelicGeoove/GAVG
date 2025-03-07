@@ -1275,7 +1275,7 @@
                 </div>
                 <!-- ... other question containers ... -->
 
-                <!-- Question 15 (Last question) -->
+                <!-- Question 15 (No longer the last question) - Remove the submit button from here -->
                 <div class="question-container" data-question="15">
                     <h2 class="question-title">Additional Comments</h2>
                     <div class="mb-6">
@@ -1288,6 +1288,124 @@
                             contacted about future gaming initiatives)</label>
                         <input type="email" id="email" name="email">
                     </div>
+                    <div class="flex justify-between">
+                        <button type="button" class="btn btn-secondary prev-btn">Previous</button>
+                        <button type="button" class="btn btn-primary next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 16 - Soccer Games Questions -->
+                <div class="question-container" data-question="16">
+                    <h2 class="question-title">Soccer Games in Ghana</h2>
+                    <div class="mb-6">
+                        <label for="soccer-popularity" class="block mb-2 text-sm font-medium">Why do you think fellow Ghanaians mostly only play Soccer games?</label>
+                        <textarea id="soccer-popularity" name="soccer-popularity" rows="3"></textarea>
+                    </div>
+                    <div class="mb-6">
+                        <label for="personal-soccer-preference" class="block mb-2 text-sm font-medium">If it applies, why do you yourself only play Soccer games?</label>
+                        <textarea id="personal-soccer-preference" name="personal-soccer-preference" rows="3" placeholder="Leave blank if this doesn't apply to you"></textarea>
+                    </div>
+                    <div class="mb-6">
+                        <label for="favorite-soccer-game" class="block mb-2 text-sm font-medium">Which soccer game do you like to play the most?</label>
+                        <div class="custom-radio">
+                            <input type="radio" id="soccer-fifa" name="favorite-soccer-game" value="fifa">
+                            <label for="soccer-fifa">FIFA</label>
+
+                            <input type="radio" id="soccer-pes" name="favorite-soccer-game" value="pes">
+                            <label for="soccer-pes">PES/eFootball</label>
+
+                            <input type="radio" id="soccer-mobile" name="favorite-soccer-game" value="mobile-soccer">
+                            <label for="soccer-mobile">Mobile Soccer Games</label>
+
+                            <input type="radio" id="soccer-other" name="favorite-soccer-game" value="other">
+                            <label for="soccer-other">Other Soccer Games</label>
+
+                            <input type="radio" id="soccer-none" name="favorite-soccer-game" value="none">
+                            <label for="soccer-none">I don't play Soccer games</label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button" class="btn btn-secondary prev-btn">Previous</button>
+                        <button type="button" class="btn btn-primary next-btn">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 17 - Multiplayer Gaming -->
+                <div class="question-container" data-question="17">
+                    <h2 class="question-title">Online Multiplayer Gaming</h2>
+                    <div class="mb-6">
+                        <p class="block mb-3 text-sm font-medium">Do you play online multiplayer games?</p>
+                        <div class="custom-radio">
+                            <input type="radio" id="multiplayer-yes" name="plays-multiplayer" value="yes" required>
+                            <label for="multiplayer-yes">Yes</label>
+
+                            <input type="radio" id="multiplayer-no" name="plays-multiplayer" value="no">
+                            <label for="multiplayer-no">No</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Conditional multiplayer questions - will be shown/hidden via JS -->
+                    <div id="multiplayer-questions" style="display: none;">
+                        <div class="mb-6">
+                            <p class="block mb-3 text-sm font-medium">How often do you play multiplayer games?</p>
+                            <div class="custom-radio">
+                                <input type="radio" id="mp-frequency-daily" name="multiplayer-frequency" value="daily">
+                                <label for="mp-frequency-daily">Daily</label>
+
+                                <input type="radio" id="mp-frequency-weekly" name="multiplayer-frequency" value="weekly">
+                                <label for="mp-frequency-weekly">Several times a week</label>
+
+                                <input type="radio" id="mp-frequency-monthly" name="multiplayer-frequency" value="monthly">
+                                <label for="mp-frequency-monthly">A few times a month</label>
+
+                                <input type="radio" id="mp-frequency-rarely" name="multiplayer-frequency" value="rarely">
+                                <label for="mp-frequency-rarely">Rarely</label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <p class="block mb-3 text-sm font-medium">Which device do you use to play online multiplayer games? (Select all that apply)</p>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="mp-device-mobile" name="multiplayer-devices" value="mobile">
+                                <label for="mp-device-mobile">Mobile Phone</label>
+
+                                <input type="checkbox" id="mp-device-console" name="multiplayer-devices" value="console">
+                                <label for="mp-device-console">Gaming Console (PlayStation, Xbox, etc.)</label>
+
+                                <input type="checkbox" id="mp-device-pc" name="multiplayer-devices" value="pc">
+                                <label for="mp-device-pc">PC/Computer</label>
+
+                                <input type="checkbox" id="mp-device-tablet" name="multiplayer-devices" value="tablet">
+                                <label for="mp-device-tablet">Tablet</label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <p class="block mb-3 text-sm font-medium">Do you have friends that you play multiplayer games with?</p>
+                            <div class="custom-radio">
+                                <input type="radio" id="mp-friends-yes" name="multiplayer-friends" value="yes">
+                                <label for="mp-friends-yes">Yes</label>
+
+                                <input type="radio" id="mp-friends-no" name="multiplayer-friends" value="no">
+                                <label for="mp-friends-no">No</label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <p class="block mb-3 text-sm font-medium">Have you ever met another Ghanaian online when playing online multiplayer games?</p>
+                            <div class="custom-radio">
+                                <input type="radio" id="met-ghanaian-yes" name="met-ghanaian-online" value="yes">
+                                <label for="met-ghanaian-yes">Yes</label>
+
+                                <input type="radio" id="met-ghanaian-no" name="met-ghanaian-online" value="no">
+                                <label for="met-ghanaian-no">No</label>
+
+                                <input type="radio" id="met-ghanaian-unsure" name="met-ghanaian-online" value="unsure">
+                                <label for="met-ghanaian-unsure">Not sure</label>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="flex justify-between">
                         <button type="button" class="btn btn-secondary prev-btn">Previous</button>
                         <button type="submit" id="submit-btn" class="btn btn-primary">Submit Survey</button>
@@ -1600,6 +1718,25 @@
                     e.stopPropagation();
                 }, true);
             }
+
+            // Add multiplayer conditional logic
+            const playsMultiplayerRadios = document.querySelectorAll('input[name="plays-multiplayer"]');
+            const multiplayerQuestionsContainer = document.getElementById('multiplayer-questions');
+
+            playsMultiplayerRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    multiplayerQuestionsContainer.style.display = this.value === 'yes' ? 'block' : 'none';
+                    
+                    // If "No" is selected, clear any selections in the conditional questions
+                    if (this.value === 'no') {
+                        document.querySelectorAll('#multiplayer-questions input').forEach(input => {
+                            if (input.type === 'radio' || input.type === 'checkbox') {
+                                input.checked = false;
+                            }
+                        });
+                    }
+                });
+            });
         });
     </script>
     <script>
