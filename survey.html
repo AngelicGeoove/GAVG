@@ -624,6 +624,18 @@
             margin-bottom: 0.5rem;
         }
 
+        /* Fix for introduction text color in dark mode */
+        [data-theme="dark"] .text-gray-600,
+        [data-theme="dark"] .dark\:text-gray-300,
+        [data-theme="dark"] .intro-container .text-gray-600 {
+            color: var(--text-secondary) !important;
+        }
+        
+        /* Ensure intro text lists are visible in dark mode too */
+        [data-theme="dark"] .intro-container ul.list-disc li {
+            color: var(--text-secondary) !important;
+        }
+
         /* Make question titles more prominent */
         .question-title {
             font-size: 1.75rem !important; /* Larger question titles */
@@ -688,7 +700,7 @@
             <div class="black-star"></div>
 
             <div class="survey-header">
-                <h1 class="survey-title">Video Games And Ghana Survey</h1>
+                <h1 class="survey-title">Ghana And Video Games Survey</h1>
                 <p class="survey-subtitle">Share your thoughts on Video Games and Game Development in Ghana</p>
             </div>
 
@@ -712,7 +724,7 @@
                     </div>
                     <div class="flag-stripe green-stripe"></div>
                 </div>
-                <h2 class="text-2xl font-bold mb-4">Welcome to the Ghana Video Game Survey!</h2>
+                <h2 class="text-2xl font-bold mb-4">Welcome to the Ghana And Video Game Survey!</h2>
                 <div class="text-gray-600 dark:text-gray-300 mb-6 space-y-4">
                     <p>Thank you for participating in this important survey about Video Games and Game Development in
                         Ghana. Your responses will help us understand the current state of gaming in our country and
