@@ -326,6 +326,78 @@ textarea:focus {
     margin-bottom: 1rem;
 }
 
+/* Ghana flag animation styles - moved from individual pages */
+.ghana-flag-animation {
+    width: 100px;
+    height: 60px;
+    margin: 0 auto 2rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.flag-stripe {
+    width: 100%;
+    height: 20px;
+}
+
+.red-stripe {
+    background-color: var(--red);
+}
+
+.yellow-stripe {
+    background-color: var(--yellow);
+    position: relative;
+}
+
+.black-star-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    background-color: var(--black);
+    z-index: 1;
+}
+
+.green-stripe {
+    background-color: var(--green);
+}
+
+/* Page titles and headers - common across pages */
+.page-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--red), var(--yellow), var(--green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.page-subtitle {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Main container */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8rem 2rem 4rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .navbar {
@@ -357,6 +429,10 @@ textarea:focus {
         width: auto !important;
         min-width: 100px;
         margin-bottom: 0 !important;
+    }
+    
+    .page-title {
+        font-size: 2rem;
     }
 }
 

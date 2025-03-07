@@ -526,6 +526,38 @@
                 font-size: 1.5rem;
             }
         }
+
+        /* Enhanced styling for the send message button */
+        .send-message-btn {
+            background: linear-gradient(135deg, var(--red), var(--green));
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .send-message-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            filter: brightness(1.05);
+        }
+
+        .send-message-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .send-message-btn i {
+            font-size: 1rem;
+        }
     </style>
 </head>
 
@@ -769,18 +801,31 @@
                     </div>
                     <div class="mb-6">
                         <label for="message" class="block mb-2 text-sm font-medium">Message</label>
-                        <textarea id="message" name="message" rows="6" placeholder="Your message here..."
-                            required></textarea>
-                        <footer class="footer">
-                            <div class="container">
-                                <p class="footer-text">© 2025 Angelic Groove. All rights reserved.</p>
-                            </div>
-                        </footer>
+                        <textarea id="message" name="message" rows="6" placeholder="Your message here..." required
+                            class="w-full px-4 py-3 rounded-lg border border-solid border-gray-300 focus:border-green-500 focus:outline-none"
+                            style="background-color: var(--card-bg); color: var(--text-primary); border-color: var(--border);"></textarea>
+                    </div>
+
+                    <!-- Updated submit button with better styling -->
+                    <div class="text-center">
+                        <button type="submit" class="send-message-btn">
+                            <i class="fas fa-paper-plane mr-2"></i> Send Message
+                        </button>
                     </div>
                 </form>
+
+                <!-- Fix for form status display -->
+                <div id="form-status" class="mt-4 text-center hidden"></div>
             </div>
         </div>
     </section>
+
+    <!-- Footer - moved outside the form -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2025 Angelic Groove. All rights reserved.</p>
+        </div>
+    </footer>
 
     <!-- Back To Top Button -->
     <a href="#" class="back-to-top" id="back-to-top"></a>
@@ -1034,11 +1079,9 @@
             console.error('Error:', error);
             formStatus.innerHTML = '<p style="color: var(--red);"><i class="fa-solid fa-triangle-exclamation"></i> There was a problem sending your message.Please try again later.</p > ';
         }
-        });
 
         // Initialize theme
         initializeTheme();
-    });
     </script>
 </body>
 

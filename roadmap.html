@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <!-- Add link to external CSS -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- Page-specific styles -->
     <style>
-        /* Timeline specific styles */
+        /* Timeline styles */
         .timeline-container {
             position: relative;
             padding: 1rem 0;
@@ -81,13 +82,202 @@
             justify-content: center;
         }
 
-        /* ...remaining timeline-specific styles... */
-        
-        @media (max-width: 768px) {
-            .page-title {
-                font-size: 2rem;
-            }
+        .timeline-dot-outer {
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
+        .timeline-dot-inner {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .timeline-dot.completed .timeline-dot-inner {
+            background-color: var(--green);
+        }
+
+        .timeline-dot.in-progress .timeline-dot-inner {
+            background-color: var(--yellow);
+        }
+
+        .timeline-dot.planned .timeline-dot-inner {
+            background-color: var(--red);
+        }
+
+        .timeline-date {
+            position: absolute;
+            top: 0;
+            width: 40%;
+            padding: 10px 20px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .timeline-content {
+            position: relative;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 1rem;
+            width: 45%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-tag.completed {
+            background-color: rgba(0, 107, 63, 0.2);
+            color: var(--green);
+            border: 1px solid var(--green);
+        }
+
+        .timeline-tag.in-progress {
+            background-color: rgba(252, 209, 22, 0.2);
+            color: var(--yellow);
+            border: 1px solid var(--yellow);
+        }
+
+        .timeline-tag.planned {
+            background-color: rgba(206, 17, 38, 0.2);
+            color: var(--red);
+            border: 1px solid var(--red);
+        }
+
+        .timeline-icon {
+            position: absolute;
+            top: -20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--red), var(--yellow), var(--green));
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-icon {
+            left: -20px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-icon {
+            right: -20px;
+        }
+
+        .milestone-progress {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .milestone-progress-bar {
+            flex: 1;
+            height: 6px;
+            background-color: var(--timeline-bg);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .milestone-progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 1s ease;
+        }
+
+        .milestone-progress-fill.completed {
+            background-color: var(--green);
+            width: 100%;
+        }
+
+        .milestone-progress-fill.in-progress {
+            background: linear-gradient(to right, var(--yellow), var(--green));
+        }
+
+        .milestone-progress-fill.planned {
+            background-color: var(--red);
+            width: 0%;
+        }
+
+        .milestone-progress-text {
+            margin-left: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            width: 50px;
+        }
+
+        .key-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .key-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .key-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .key-dot.completed {
+            background-color: var(--green);
+        }
+
+        .key-dot.in-progress {
+            background-color: var(--yellow);
+        }
+
+        .key-dot.planned {
+            background-color: var(--red);
+        }
+
+        .key-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
             .timeline-center-line {
                 left: 2rem;
             }
@@ -136,6 +326,7 @@
             <a href="portfolio.html" class="nav-link">Portfolio</a>
             <a href="roadmap.html" class="nav-link">Roadmap</a>
             <a href="other-games.html" class="nav-link">Games</a>
+            <a href="survey.html" class="nav-link">G.A.V.G. Survey</a>
         </div>
         <button class="theme-toggle" id="theme-toggle">
             <i class="fa-regular fa-sun sun-icon"></i>
@@ -147,7 +338,9 @@
     <main class="main-container">
         <section class="header">
             <h1 class="page-title">Ghana And Video Games Project Roadmap</h1>
-            <p class="page-subtitle">Follow our journey to research, understand, and develop video games with Ghanaian cultural influence. This roadmap outlines the key milestones of the G.A.V.G. project and our progress toward each goal.</p>
+            <p class="page-subtitle">Follow my journey to research, understand, and develop video games with Ghanaian
+                influence. This roadmap outlines the key milestones of the G.A.V.G. Project and my progress
+                toward each goal.</p>
         </section>
 
         <section class="key-container">
@@ -175,14 +368,15 @@
                         <div class="timeline-dot-inner"></div>
                     </div>
                 </div>
-                <div class="timeline-date">March 2023</div>
+                <div class="timeline-date">January 2025</div>
                 <div class="timeline-content">
                     <div class="timeline-icon">
                         <i class="fas fa-flag"></i>
                     </div>
                     <h3 class="timeline-title">Project Inception</h3>
                     <p class="timeline-description">
-                        Initial planning and research on the state of video games in Ghana. Defined the project goals and scope.
+                        Initial planning and research on the state of video games in Ghana. Defined the project goals
+                        and scope.
                     </p>
                     <div>
                         <span class="timeline-tag completed">Completed</span>
@@ -203,14 +397,15 @@
                         <div class="timeline-dot-inner"></div>
                     </div>
                 </div>
-                <div class="timeline-date">July 2023</div>
+                <div class="timeline-date">March 2025</div>
                 <div class="timeline-content">
                     <div class="timeline-icon">
                         <i class="fas fa-poll"></i>
                     </div>
                     <h3 class="timeline-title">Survey Development</h3>
                     <p class="timeline-description">
-                        Created a comprehensive survey to gather data on gaming habits, preferences, and awareness of game development in Ghana.
+                        Created the first survey to gather data on gaming habits, preferences, and awareness of game
+                        development in Ghana.
                     </p>
                     <div>
                         <span class="timeline-tag completed">Completed</span>
@@ -224,6 +419,42 @@
                 </div>
             </div>
 
+            <!-- Timeline Item 5 -->
+            <div class="timeline-item">
+                <div class="timeline-dot in-progress">
+                    <div class="timeline-dot-outer">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                </div>
+                <div class="timeline-date">March 2025</div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="timeline-title">Community Building</h3>
+                    <p class="timeline-description">
+                        Creating a community of gamers and aspiring game developers in Ghana. WhatsApp community channel
+                        created after survey launch. Continuing to build connections and foster collaboration.
+                    </p>
+                    <div>
+                        <span class="timeline-tag in-progress">In Progress</span>
+                    </div>
+                    <div class="milestone-progress">
+                        <div class="milestone-progress-bar">
+                            <div class="milestone-progress-fill in-progress" style="width: 50%;"></div>
+                        </div>
+                        <div class="milestone-progress-text">50%</div>
+                    </div>
+
+                    <!-- WhatsApp Join Button -->
+                    <div class="mt-4">
+                        <a href="https://chat.whatsapp.com/EjHVTT8TNuF92db2tLnGMf" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Join WhatsApp Channel
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <!-- Timeline Item 3 -->
             <div class="timeline-item">
                 <div class="timeline-dot in-progress">
@@ -231,14 +462,15 @@
                         <div class="timeline-dot-inner"></div>
                     </div>
                 </div>
-                <div class="timeline-date">March 2024</div>
+                <div class="timeline-date">March 2025</div>
                 <div class="timeline-content">
                     <div class="timeline-icon">
                         <i class="fas fa-chart-pie"></i>
                     </div>
                     <h3 class="timeline-title">Data Collection</h3>
                     <p class="timeline-description">
-                        Launching the survey and collecting responses from Ghanaians about their gaming experiences and interests. Building a representative dataset.
+                        Launching the survey and collecting responses from Ghanaians about their gaming experiences and
+                        interests. Building a representative dataset.
                     </p>
                     <div>
                         <span class="timeline-tag in-progress">In Progress</span>
@@ -259,14 +491,15 @@
                         <div class="timeline-dot-inner"></div>
                     </div>
                 </div>
-                <div class="timeline-date">June 2024</div>
+                <div class="timeline-date">(To Be Determined...)</div>
                 <div class="timeline-content">
                     <div class="timeline-icon">
                         <i class="fas fa-lightbulb"></i>
                     </div>
                     <h3 class="timeline-title">Data Analysis & Insights</h3>
                     <p class="timeline-description">
-                        Analyzing survey data to identify trends, preferences, and opportunities for game development in Ghana. Creating insights report.
+                        Analyzing survey data to identify trends, preferences, and opportunities for game development in
+                        Ghana. Creating an insight report whenever results are ready.
                     </p>
                     <div>
                         <span class="timeline-tag planned">Planned</span>
@@ -280,37 +513,30 @@
                 </div>
             </div>
 
-            <!-- Timeline Item 5 - Update to add WhatsApp button -->
             <div class="timeline-item">
                 <div class="timeline-dot in-progress">
                     <div class="timeline-dot-outer">
                         <div class="timeline-dot-inner"></div>
                     </div>
                 </div>
-                <div class="timeline-date">August 2024</div>
+                <div class="timeline-date">March 2025</div>
                 <div class="timeline-content">
                     <div class="timeline-icon">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-pen"></i>
                     </div>
-                    <h3 class="timeline-title">Community Building</h3>
+                    <h3 class="timeline-title">Reveal of Further Plans</h3>
                     <p class="timeline-description">
-                        Creating a community of gamers and aspiring game developers in Ghana. WhatsApp community channel already established and growing. Continuing to build connections and foster collaboration.
+                        Further Plans for the project will be revealed to the community. This will include the next steps
+                        for the Project and how the community can get involved.
                     </p>
                     <div>
                         <span class="timeline-tag in-progress">In Progress</span>
                     </div>
                     <div class="milestone-progress">
                         <div class="milestone-progress-bar">
-                            <div class="milestone-progress-fill in-progress" style="width: 50%;"></div>
+                            <div class="milestone-progress-fill in-progress" style="width: 20%;"></div>
                         </div>
-                        <div class="milestone-progress-text">50%</div>
-                    </div>
-                    
-                    <!-- WhatsApp Join Button -->
-                    <div class="mt-4">
-                        <a href="https://chat.whatsapp.com/EjHVTT8TNuF92db2tLnGMf" class="whatsapp-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Join WhatsApp Channel
-                        </a>
+                        <div class="milestone-progress-text">20%</div>
                     </div>
                 </div>
             </div>
@@ -322,14 +548,15 @@
                         <div class="timeline-dot-inner"></div>
                     </div>
                 </div>
-                <div class="timeline-date">October 2024</div>
+                <div class="timeline-date">(To Be Determined...)</div>
                 <div class="timeline-content">
                     <div class="timeline-icon">
                         <i class="fas fa-pen"></i>
                     </div>
                     <h3 class="timeline-title">Game Concept Development</h3>
                     <p class="timeline-description">
-                        Creating game concepts that incorporate Ghanaian cultural elements, based on insights from the survey data. Selecting the most promising concept for development.
+                        Creating game concepts that incorporate Ghanaian cultural elements, based on insights from the
+                        survey data. Selecting the most promising concept for development.
                     </p>
                     <div>
                         <span class="timeline-tag planned">Planned</span>
@@ -350,14 +577,15 @@
                         <div class="timeline-dot-inner"></div>
                     </div>
                 </div>
-                <div class="timeline-date">January 2025</div>
+                <div class="timeline-date">(To Be Determined...)</div>
                 <div class="timeline-content">
                     <div class="timeline-icon">
                         <i class="fas fa-gamepad"></i>
                     </div>
-                    <h3 class="timeline-title">Game Development</h3>
+                    <h3 class="timeline-title">Game Development Start</h3>
                     <p class="timeline-description">
-                        Full production of a game that reflects Ghanaian culture and meets the interests identified in our research. Focus on quality and cultural authenticity.
+                        Full production of a game that reflects Ghanaian culture and meets the interests identified in
+                        my research.
                     </p>
                     <div>
                         <span class="timeline-tag planned">Planned</span>
@@ -378,14 +606,15 @@
                         <div class="timeline-dot-inner"></div>
                     </div>
                 </div>
-                <div class="timeline-date">March 2025</div>
+                <div class="timeline-date">(To Be Determined...)</div>
                 <div class="timeline-content">
                     <div class="timeline-icon">
                         <i class="fas fa-rocket"></i>
                     </div>
                     <h3 class="timeline-title">Game Launch</h3>
                     <p class="timeline-description">
-                        Official release of the first G.A.V.G. project game. Marketing and community engagement to maximize reach and impact within Ghana and beyond.
+                        Official release of the first G.A.V.G. project game. If I do reach this point, that is going to be
+                        something else isn't it?
                     </p>
                     <div>
                         <span class="timeline-tag planned">Planned</span>
@@ -402,7 +631,7 @@
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Theme Toggle
             const themeToggle = document.getElementById('theme-toggle');
             const sunIcon = document.querySelector('.sun-icon');
@@ -437,7 +666,7 @@
             };
 
             // Theme toggle functionality
-            themeToggle.addEventListener('click', function() {
+            themeToggle.addEventListener('click', function () {
                 try {
                     const currentTheme = document.documentElement.getAttribute('data-theme');
                     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';

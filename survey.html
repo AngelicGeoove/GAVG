@@ -1463,8 +1463,15 @@
                         <label for="comments" class="block mb-2 text-sm font-medium">Do you have any additional thoughts about video Games or Game Development in Ghana?</label>
                         <textarea id="comments" name="comments" rows="4"></textarea>
                     </div>
+                    
+                    <!-- Added Name on certificate field -->
                     <div class="mb-6">
-                        <label for="email" class="block mb-2 text-sm font-medium">Email (optional - if you'd like to be contacted about future gaming initiatives)</label>
+                        <label for="certificate-name" class="block mb-2 text-sm font-medium">Name on certificate (if you'd like to receive a participation certificate)</label>
+                        <input type="text" id="certificate-name" name="certificate-name" placeholder="Enter your name as you'd like it to appear">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="email" class="block mb-2 text-sm font-medium">Email (optional - if you'd like to be contacted about future gaming initiatives or receive your certificate)</label>
                         <input type="email" id="email" name="email">
                     </div>
                     
@@ -1489,7 +1496,12 @@
                 <p class="thank-you-text">Your response has been recorded. Thank you for contributing to our survey
                     about video Games and Game Development in Ghana. If you want to join me in this journey of raising
                     Video Game potential, you can join my WhatsApp group through my Portfolio.</p>
-                <button type="button" id="restart-btn" class="btn btn-primary">Open Portfolio</button>
+                <div class="flex flex-col gap-3">
+                    <button type="button" id="restart-btn" class="btn btn-primary">Open Portfolio</button>
+                    <a href="https://chat.whatsapp.com/JJWJRMphzHkHZIxmrfSp0G" target="_blank" class="btn btn-secondary">
+                        <i class="fab fa-whatsapp mr-2"></i> Join WhatsApp Group
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -1777,13 +1789,13 @@
                     
                     // Uncomment to automatically show thank you screen for returning users
                     // who already submitted:
-                    /*
+                    
                     introScreen.style.display = 'none';
                     form.style.display = 'none';
                     document.querySelector('.survey-header').style.display = 'none';
                     document.querySelector('.progress-bar').parentElement.style.display = 'none';
                     thankYouScreen.style.display = 'block';
-                    */
+                    
                 }
             } catch (error) {
                 console.warn('Could not check localStorage for previous submissions');
