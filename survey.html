@@ -615,6 +615,34 @@
                 margin-bottom: 0 !important;
             }
         }
+
+        /* Add custom styling for survey labels */
+        .question-container label,
+        .question-container p.block.mb-3 {
+            font-size: 1rem !important; /* Increase from text-sm to 1rem */
+            font-weight: 500 !important;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Make question titles more prominent */
+        .question-title {
+            font-size: 1.75rem !important; /* Larger question titles */
+            font-weight: 700 !important;
+            margin-bottom: 1.75rem !important;
+        }
+        
+        /* Ensure good contrast for better readability */
+        .custom-radio label,
+        .custom-checkbox label {
+            font-size: 1rem !important;
+            padding: 12px 18px; /* Slightly more padding */
+        }
+
+        /* Make the block labels (like "How often do you play...") more prominent */
+        p.block.mb-3.text-sm.font-medium {
+            font-size: 1.1rem !important;
+            margin-bottom: 1rem !important;
+        }
     </style>
 </head>
 
@@ -661,7 +689,7 @@
 
             <div class="survey-header">
                 <h1 class="survey-title">Video Games And Ghana Survey</h1>
-                <p class="survey-subtitle">Share your thoughts on video Games and Game Development in Ghana</p>
+                <p class="survey-subtitle">Share your thoughts on Video Games and Game Development in Ghana</p>
             </div>
 
             <!-- Progress Bar -->
@@ -686,7 +714,7 @@
                 </div>
                 <h2 class="text-2xl font-bold mb-4">Welcome to the Ghana Video Game Survey!</h2>
                 <div class="text-gray-600 dark:text-gray-300 mb-6 space-y-4">
-                    <p>Thank you for participating in this important survey about video Games and Game Development in
+                    <p>Thank you for participating in this important survey about Video Games and Game Development in
                         Ghana. Your responses will help us understand the current state of gaming in our country and
                         identify
                         opportunities for growth.</p>
@@ -761,7 +789,7 @@
                 <div class="question-container" data-question="2">
                     <h2 class="question-title">Gaming Experience</h2>
                     <div class="mb-6">
-                        <p class="block mb-3 text-sm font-medium">How often do you play video Games?</p>
+                        <p class="block mb-3 text-sm font-medium">How often do you play Video Games?</p>
                         <div class="custom-radio">
                             <input type="radio" id="gaming-frequency-daily" name="gaming-frequency" value="daily"
                                 required>
@@ -792,7 +820,7 @@
                     <div class="mb-6">
                         <p class="block mb-3 text-sm font-medium  dark:text-gray-300">Which devices do you
                             use to play
-                            video Games? (Select all that apply)</p>
+                            Video Games? (Select all that apply)</p>
                         <div class="custom-checkbox">
                             <input type="checkbox" id="device-mobile" name="gaming-devices" value="mobile">
                             <label for="device-mobile">Mobile Phone</label>
@@ -873,7 +901,7 @@
                     <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Local Game Development</h2>
                     <div class="mb-6">
                         <p class="block mb-3 text-sm font-medium  dark:text-gray-300">Are you aware of any
-                            video Games
+                            Video Games
                             developed in Ghana?</p>
                         <div class="custom-radio">
                             <input type="radio" id="local-Games-yes" name="local-Games-awareness" value="yes"
@@ -904,7 +932,7 @@
                     <div class="mb-6">
                         <p class="block mb-3 text-sm font-medium  dark:text-gray-300">How interested would
                             you be in
-                            playing video Games developed in Ghana?</p>
+                            playing Video Games developed in Ghana?</p>
                         <div class="custom-radio">
                             <input type="radio" id="interest-very" name="local-Games-interest" value="very-interested"
                                 required="">
@@ -959,9 +987,6 @@
 
                             <input type="checkbox" id="culture-cuisine" name="cultural-elements" value="cuisine">
                             <label for="culture-cuisine">Ghanaian cuisine</label>
-
-                            <input type="checkbox" id="culture-soccer" name="cultural-elements" value="soccer">
-                            <label for="culture-soccer">Soccer</label>
                         </div>
                     </div>
                     <div class="flex justify-between">
@@ -979,7 +1004,7 @@
                     <div class="mb-6">
                         <p class="block mb-3 text-sm font-medium  dark:text-gray-300">Are you interested in
                             learning
-                            about video Game Development?</p>
+                            about Video Game Development?</p>
                         <div class="custom-radio">
                             <input type="radio" id="dev-interest-yes" name="dev-interest" value="yes" required="">
                             <label for="dev-interest-yes">Yes</label>
@@ -1026,7 +1051,7 @@
                     <div class="mb-6">
                         <p class="block mb-3 text-sm font-medium  dark:text-gray-300">What do you think is
                             needed to
-                            grow the video Game industry in Ghana? (Select up to 3)</p>
+                            grow the Video Game industry in Ghana? (Select up to 3)</p>
                         <div class="custom-checkbox">
                             <input type="checkbox" id="growth-education" name="industry-growth" value="education"
                                 class="max-3-select">
@@ -1143,7 +1168,7 @@
                     <div class="mb-6">
                         <p class="block mb-3 text-sm font-medium  dark:text-gray-300">What barriers do you
                             face in
-                            accessing video Games in Ghana? (Select all that apply)</p>
+                            accessing Video Games in Ghana? (Select all that apply)</p>
                         <div class="custom-checkbox">
                             <input type="checkbox" id="barrier-cost" name="gaming-barriers" value="cost">
                             <label for="barrier-cost">High cost of Games</label>
@@ -1179,7 +1204,7 @@
                 <div class="question-container" data-question="13">
                     <h2 class="text-xl font-semibold mb-4  dark:text-gray-100">Educational Value</h2>
                     <div class="mb-6">
-                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">Do you believe video
+                        <p class="block mb-3 text-sm font-medium  dark:text-gray-300">Do you believe Video
                             Games can be
                             valuable educational tools?</p>
                         <div class="custom-radio">
@@ -1460,7 +1485,7 @@
                     
                     <!-- Moved from Question 15 -->
                     <div class="mb-6">
-                        <label for="comments" class="block mb-2 text-sm font-medium">Do you have any additional thoughts about video Games or Game Development in Ghana?</label>
+                        <label for="comments" class="block mb-2 text-sm font-medium">Do you have any additional thoughts about Video Games or Game Development in Ghana?</label>
                         <textarea id="comments" name="comments" rows="4"></textarea>
                     </div>
                     
@@ -1494,7 +1519,7 @@
                 </div>
                 <h2 class="thank-you-title">Thank You!</h2>
                 <p class="thank-you-text">Your response has been recorded. Thank you for contributing to our survey
-                    about video Games and Game Development in Ghana. If you want to join me in this journey of raising
+                    about Video Games and Game Development in Ghana. If you want to join me in this journey of raising
                     Video Game potential, you can join my WhatsApp group through my Portfolio.</p>
                 <div class="flex flex-col gap-3">
                     <button type="button" id="restart-btn" class="btn btn-primary">Open Portfolio</button>
