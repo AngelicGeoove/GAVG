@@ -6,167 +6,473 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>G.A.V.G. Project Roadmap</title>
     <link rel="icon" type="image/png" href="Logo Coin.png">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Add link to external CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Page-specific styles -->
     <style>
-        :root {
-            --primary: #009dff;
-            --secondary: #943dff;
-            --dark: #0F0F1A;
-            --darker: #07070f;
-            --light: #F8F9FC;
-            --accent: #00E5FF;
-            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            width: 100%;
-            overflow: hidden;
-            padding: 2rem 5%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 5rem;
+        /* Timeline specific styles */
+        .timeline-container {
             position: relative;
+            padding: 1rem 0;
         }
 
-        .section-title h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-
-        .section-title p {
-            font-size: 1.2rem;
-            opacity: 0.7;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .section-title::after {
-            content: '';
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
+        .timeline-center-line {
             position: absolute;
-            bottom: -1rem;
+            width: 6px;
+            background: linear-gradient(to bottom, var(--red), var(--yellow), var(--green));
+            top: 0;
+            bottom: 0;
             left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
+            margin-left: -3px;
+            border-radius: 6px;
         }
 
-        .roadmap {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .roadmap-step {
-            background: rgba(15, 15, 26, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .timeline-item {
             position: relative;
+            margin-bottom: 4rem;
+            width: 100%;
         }
 
-        .roadmap-step::before {
-            content: '';
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 55%;
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: 55%;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-date {
+            right: 55%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-date {
+            left: 55%;
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            left: 50%;
+            margin-left: -12px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: 50%;
+            margin-left: -12px;
+        }
+
+        .timeline-dot {
             position: absolute;
-            width: 100px;
-            height: 100px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
-            background: var(--primary);
-            filter: blur(80px);
-            opacity: 0.2;
-            top: -50px;
-            right: -50px;
-            z-index: -1;
+            top: 8px;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .roadmap-step::after {
-            content: '';
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: var(--secondary);
-            filter: blur(80px);
-            opacity: 0.2;
-            bottom: -50px;
-            left: -50px;
-            z-index: -1;
-        }
+        /* ...remaining timeline-specific styles... */
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
 
-        .step-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-        }
+            .timeline-center-line {
+                left: 2rem;
+            }
 
-        .step-desc {
-            font-size: 1rem;
-            opacity: 0.8;
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 4rem;
+                margin-right: 0;
+                text-align: left;
+                width: calc(100% - 4rem);
+            }
+
+            .timeline-item:nth-child(odd) .timeline-date,
+            .timeline-item:nth-child(even) .timeline-date {
+                left: 4rem;
+                right: auto;
+                text-align: left;
+                width: calc(100% - 4rem);
+                position: relative;
+                padding: 0;
+                margin-bottom: 0.5rem;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 2rem;
+                margin-left: -12px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-icon,
+            .timeline-item:nth-child(even) .timeline-icon {
+                left: -20px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="section-title">
-            <h2>G.A.V.G. Project Roadmap</h2>
-            <p>Follow the progress of the Ghana And Video Games Project. This page will be completely overhauled by the launch of the website, I have made the changes, just haven't pushed them yet.</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-text">ANGELIC GROOVE</span>
         </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="portfolio.html" class="nav-link">Portfolio</a>
+            <a href="roadmap.html" class="nav-link">Roadmap</a>
+            <a href="other-games.html" class="nav-link">Games</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle">
+            <i class="fa-regular fa-sun sun-icon"></i>
+            <i class="fa-regular fa-moon moon-icon hidden"></i>
+        </button>
+    </nav>
 
-        <div class="roadmap">
-            <div class="roadmap-step">
-                <h3 class="step-title">Step 1: Launch Survey</h3>
-                <p class="step-desc">The survey has been officially launched to gather initial data on gaming habits and perceptions in Ghana.</p>
+    <!-- Main Content -->
+    <main class="main-container">
+        <section class="header">
+            <h1 class="page-title">Ghana And Video Games Project Roadmap</h1>
+            <p class="page-subtitle">Follow our journey to research, understand, and develop video games with Ghanaian cultural influence. This roadmap outlines the key milestones of the G.A.V.G. project and our progress toward each goal.</p>
+        </section>
+
+        <section class="key-container">
+            <div class="key-item">
+                <div class="key-dot completed"></div>
+                <span class="key-text">Completed</span>
             </div>
-            <div class="roadmap-step">
-                <h3 class="step-title">Step 2: Analyze Responses</h3>
-                <p class="step-desc">Analyze the survey responses to identify key insights and trends.</p>
+            <div class="key-item">
+                <div class="key-dot in-progress"></div>
+                <span class="key-text">In Progress</span>
             </div>
-            <div class="roadmap-step">
-                <h3 class="step-title">Step 3: Further Surveys</h3>
-                <p class="step-desc">Conduct additional surveys if needed to gather more detailed information.</p>
+            <div class="key-item">
+                <div class="key-dot planned"></div>
+                <span class="key-text">Planned</span>
             </div>
-            <div class="roadmap-step">
-                <h3 class="step-title">Step 4: Develop Game</h3>
-                <p class="step-desc">Based on the survey results, develop a game that reflects the insights and preferences of the Ghanaian gaming community.</p>
+        </section>
+
+        <section class="timeline-container">
+            <div class="timeline-center-line"></div>
+
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item">
+                <div class="timeline-dot completed">
+                    <div class="timeline-dot-outer">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                </div>
+                <div class="timeline-date">March 2023</div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3 class="timeline-title">Project Inception</h3>
+                    <p class="timeline-description">
+                        Initial planning and research on the state of video games in Ghana. Defined the project goals and scope.
+                    </p>
+                    <div>
+                        <span class="timeline-tag completed">Completed</span>
+                    </div>
+                    <div class="milestone-progress">
+                        <div class="milestone-progress-bar">
+                            <div class="milestone-progress-fill completed"></div>
+                        </div>
+                        <div class="milestone-progress-text">100%</div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item">
+                <div class="timeline-dot completed">
+                    <div class="timeline-dot-outer">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                </div>
+                <div class="timeline-date">July 2023</div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <i class="fas fa-poll"></i>
+                    </div>
+                    <h3 class="timeline-title">Survey Development</h3>
+                    <p class="timeline-description">
+                        Created a comprehensive survey to gather data on gaming habits, preferences, and awareness of game development in Ghana.
+                    </p>
+                    <div>
+                        <span class="timeline-tag completed">Completed</span>
+                    </div>
+                    <div class="milestone-progress">
+                        <div class="milestone-progress-bar">
+                            <div class="milestone-progress-fill completed"></div>
+                        </div>
+                        <div class="milestone-progress-text">100%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item">
+                <div class="timeline-dot in-progress">
+                    <div class="timeline-dot-outer">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                </div>
+                <div class="timeline-date">March 2024</div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="timeline-title">Data Collection</h3>
+                    <p class="timeline-description">
+                        Launching the survey and collecting responses from Ghanaians about their gaming experiences and interests. Building a representative dataset.
+                    </p>
+                    <div>
+                        <span class="timeline-tag in-progress">In Progress</span>
+                    </div>
+                    <div class="milestone-progress">
+                        <div class="milestone-progress-bar">
+                            <div class="milestone-progress-fill in-progress" style="width: 45%;"></div>
+                        </div>
+                        <div class="milestone-progress-text">45%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 4 -->
+            <div class="timeline-item">
+                <div class="timeline-dot planned">
+                    <div class="timeline-dot-outer">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                </div>
+                <div class="timeline-date">June 2024</div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="timeline-title">Data Analysis & Insights</h3>
+                    <p class="timeline-description">
+                        Analyzing survey data to identify trends, preferences, and opportunities for game development in Ghana. Creating insights report.
+                    </p>
+                    <div>
+                        <span class="timeline-tag planned">Planned</span>
+                    </div>
+                    <div class="milestone-progress">
+                        <div class="milestone-progress-bar">
+                            <div class="milestone-progress-fill planned"></div>
+                        </div>
+                        <div class="milestone-progress-text">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 5 - Update to add WhatsApp button -->
+            <div class="timeline-item">
+                <div class="timeline-dot in-progress">
+                    <div class="timeline-dot-outer">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                </div>
+                <div class="timeline-date">August 2024</div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="timeline-title">Community Building</h3>
+                    <p class="timeline-description">
+                        Creating a community of gamers and aspiring game developers in Ghana. WhatsApp community channel already established and growing. Continuing to build connections and foster collaboration.
+                    </p>
+                    <div>
+                        <span class="timeline-tag in-progress">In Progress</span>
+                    </div>
+                    <div class="milestone-progress">
+                        <div class="milestone-progress-bar">
+                            <div class="milestone-progress-fill in-progress" style="width: 50%;"></div>
+                        </div>
+                        <div class="milestone-progress-text">50%</div>
+                    </div>
+                    
+                    <!-- WhatsApp Join Button -->
+                    <div class="mt-4">
+                        <a href="https://chat.whatsapp.com/EjHVTT8TNuF92db2tLnGMf" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Join WhatsApp Channel
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 6 -->
+            <div class="timeline-item">
+                <div class="timeline-dot planned">
+                    <div class="timeline-dot-outer">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                </div>
+                <div class="timeline-date">October 2024</div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <i class="fas fa-pen"></i>
+                    </div>
+                    <h3 class="timeline-title">Game Concept Development</h3>
+                    <p class="timeline-description">
+                        Creating game concepts that incorporate Ghanaian cultural elements, based on insights from the survey data. Selecting the most promising concept for development.
+                    </p>
+                    <div>
+                        <span class="timeline-tag planned">Planned</span>
+                    </div>
+                    <div class="milestone-progress">
+                        <div class="milestone-progress-bar">
+                            <div class="milestone-progress-fill planned"></div>
+                        </div>
+                        <div class="milestone-progress-text">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 7 -->
+            <div class="timeline-item">
+                <div class="timeline-dot planned">
+                    <div class="timeline-dot-outer">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                </div>
+                <div class="timeline-date">January 2025</div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="timeline-title">Game Development</h3>
+                    <p class="timeline-description">
+                        Full production of a game that reflects Ghanaian culture and meets the interests identified in our research. Focus on quality and cultural authenticity.
+                    </p>
+                    <div>
+                        <span class="timeline-tag planned">Planned</span>
+                    </div>
+                    <div class="milestone-progress">
+                        <div class="milestone-progress-bar">
+                            <div class="milestone-progress-fill planned"></div>
+                        </div>
+                        <div class="milestone-progress-text">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 8 -->
+            <div class="timeline-item">
+                <div class="timeline-dot planned">
+                    <div class="timeline-dot-outer">
+                        <div class="timeline-dot-inner"></div>
+                    </div>
+                </div>
+                <div class="timeline-date">March 2025</div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="timeline-title">Game Launch</h3>
+                    <p class="timeline-description">
+                        Official release of the first G.A.V.G. project game. Marketing and community engagement to maximize reach and impact within Ghana and beyond.
+                    </p>
+                    <div>
+                        <span class="timeline-tag planned">Planned</span>
+                    </div>
+                    <div class="milestone-progress">
+                        <div class="milestone-progress-bar">
+                            <div class="milestone-progress-fill planned"></div>
+                        </div>
+                        <div class="milestone-progress-text">0%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const sunIcon = document.querySelector('.sun-icon');
+            const moonIcon = document.querySelector('.moon-icon');
+
+            // Theme management
+            const initializeTheme = () => {
+                try {
+                    const savedTheme = localStorage.getItem('theme');
+                    if (savedTheme) {
+                        document.documentElement.setAttribute('data-theme', savedTheme);
+                        updateThemeUI(savedTheme);
+                    } else {
+                        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                        const initialTheme = prefersDark ? 'dark' : 'light';
+                        document.documentElement.setAttribute('data-theme', initialTheme);
+                        updateThemeUI(initialTheme);
+                    }
+                } catch (error) {
+                    console.error('Error accessing localStorage:', error);
+                }
+            };
+
+            const updateThemeUI = (theme) => {
+                if (theme === 'dark') {
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                } else {
+                    moonIcon.classList.add('hidden');
+                    sunIcon.classList.remove('hidden');
+                }
+            };
+
+            // Theme toggle functionality
+            themeToggle.addEventListener('click', function() {
+                try {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateThemeUI(newTheme);
+                } catch (error) {
+                    console.error('Error saving theme preference:', error);
+                }
+            });
+
+            // Scroll animations for timeline items
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(item);
+            });
+
+            // Initialize theme
+            initializeTheme();
+        });
+    </script>
 </body>
 
 </html>

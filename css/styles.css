@@ -1,0 +1,387 @@
+/* Main CSS file for GAVG website */
+
+/* Variables for consistent styling */
+:root {
+    --red: #CE1126;
+    --yellow: #FCD116;
+    --green: #006B3F;
+    --black: #000000;
+    --white: #FFFFFF;
+    --dark: #0A0A0A;
+    --light: #F8F9FA;
+    --accent: #00E5FF;
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Theme variables */
+[data-theme="dark"] {
+    --bg-primary: #0D0D0D;
+    --bg-secondary: #121212;
+    --text-primary: #F8F9FA;
+    --text-secondary: #B0B0B0;
+    --card-bg: #1A1A1A;
+    --border: #2A2A2A;
+    --timeline-bg: #202020;
+    --input-bg: #2D3748;
+    --input-text: #F8F9FA;
+    --input-border: #4A5568;
+}
+
+[data-theme="light"] {
+    --bg-primary: #F8F9FA;
+    --bg-secondary: #FFFFFF;
+    --text-primary: #111111;
+    --text-secondary: #555555;
+    --card-bg: #FFFFFF;
+    --border: #E0E0E0;
+    --timeline-bg: #EAEAEA;
+    --input-bg: #FFFFFF;
+    --input-text: #111111;
+    --input-border: #E0E0E0;
+}
+
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: var(--transition);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Navigation styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(var(--bg-primary), 0.8);
+    transition: var(--transition);
+}
+
+.navbar.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-text {
+    background: linear-gradient(135deg, var(--red), var(--yellow), var(--green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(135deg, var(--red), var(--yellow), var(--green));
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--yellow);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.theme-toggle:hover {
+    color: var(--yellow);
+    transform: rotate(30deg);
+}
+
+/* Mobile navigation styles */
+.menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: var(--card-bg);
+    z-index: 200;
+    padding: 2rem;
+    transition: var(--transition);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-nav.active {
+    left: 0;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 199;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Buttons and form controls */
+.btn {
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: 50px;
+    border: none;
+    text-decoration: none;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--red), var(--green));
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, var(--red) 30%, var(--green) 100%);
+}
+
+.btn-secondary {
+    border: 2px solid var(--yellow);
+    color: var(--text-primary);
+    background-color: transparent;
+}
+
+.btn-secondary:hover {
+    background-color: var(--yellow);
+    color: var(--black);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Form controls */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 2px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 0 2px rgba(0, 107, 63, 0.2);
+}
+
+/* Footer and back to top */
+.footer {
+    padding: 2rem 0;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-text {
+    color: var(--text-secondary);
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.back-to-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: var(--yellow);
+    color: var(--black);
+    transform: translateY(-5px);
+}
+
+/* Utility classes */
+.hidden {
+    display: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .flex.justify-between {
+        flex-direction: row !important;
+        gap: 0.5rem;
+    }
+
+    .btn,
+    .ghana-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        width: auto !important;
+        min-width: 100px;
+        margin-bottom: 0 !important;
+    }
+}
+
+/* WhatsApp button styles */
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.2rem;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+    margin-top: 0.5rem;
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+    filter: brightness(1.05);
+}
+
+.whatsapp-btn i {
+    color: white;
+}
