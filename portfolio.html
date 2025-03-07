@@ -1034,54 +1034,6 @@
             // Initialize theme
             initializeTheme();
         });
-
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-
-        // Create message object
-        const contactMessage = {
-            name: name,
-            email: email,
-            subject: subject,
-            message: message,
-            timestamp: Date.now()
-        };
-
-        // Send to Firebase
-        try {
-            const firebaseUrl =
-                'https://ghana-and-video-games-survey-default-rtdb.europe-west1.firebasedatabase.app/contact-messages.json';
-
-            fetch(firebaseUrl, {
-                method: 'POST',
-                body: JSON.stringify(contactMessage)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        formStatus.innerHTML = '<p style="color: var(--green);"><i class="fa-solid fa-check-circle"></i> Your message has been sent successfully!</p > ';
-                        contactForm.reset();
-
-                        // Hide success message after 5 seconds
-                        setTimeout(() => {
-                            formStatus.classList.add('hidden');
-                        }, 5000);
-                    } else {
-                        formStatus.innerHTML = '<p style="color: var(--red);"><i class="fa-solid fa-triangle-exclamation"></i> There was a problem sending your message.Please try again later.</p > ';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    formStatus.innerHTML = '<p style="color: var(--red);"><i class="fa-solid fa-triangle-exclamation"></i> There was a problem sending your message.Please try again later.</p > ';
-                });
-        } catch (error) {
-            console.error('Error:', error);
-            formStatus.innerHTML = '<p style="color: var(--red);"><i class="fa-solid fa-triangle-exclamation"></i> There was a problem sending your message.Please try again later.</p > ';
-        }
-
-        // Initialize theme
-        initializeTheme();
     </script>
 </body>
 
