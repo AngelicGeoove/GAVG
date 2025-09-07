@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Development Log - GAVG Project</title>
+    <link rel="icon" type="image/png" href="Logo Coin.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <style>
+      .devlog-entry {
+        background: var(--card-bg);
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+        border-left: 4px solid var(--accent-color);
+      }
+
+      .devlog-entry:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .devlog-date {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .devlog-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+      }
+
+      .devlog-content {
+        color: var(--text-secondary);
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+
+      .progress-section {
+        background: var(--bg-secondary);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      .progress-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+        background: var(--card-bg);
+        border-radius: 0.5rem;
+      }
+
+      .progress-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .progress-bar {
+        width: 200px;
+        height: 8px;
+        background: var(--bg-primary);
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .progress-fill {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.5s ease;
+      }
+
+      .progress-fill.complete {
+        background: var(--green);
+      }
+
+      .progress-fill.in-progress {
+        background: var(--yellow);
+      }
+
+      .progress-fill.planned {
+        background: var(--red);
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .feature-card {
+        background: var(--bg-secondary);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        text-align: center;
+        transition: var(--transition);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--accent-color);
+      }
+
+      .feature-title {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .feature-status {
+        font-size: 0.9rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-weight: 500;
+      }
+
+      .status-complete {
+        background: rgba(34, 197, 94, 0.2);
+        color: var(--green);
+      }
+
+      .status-progress {
+        background: rgba(251, 191, 36, 0.2);
+        color: var(--yellow);
+      }
+
+      .status-planned {
+        background: rgba(239, 68, 68, 0.2);
+        color: var(--red);
+      }
+
+      .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .tech-tag {
+        background: var(--accent-color);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .cultural-highlight {
+        background: linear-gradient(
+          135deg,
+          rgba(220, 38, 38, 0.1),
+          rgba(251, 191, 36, 0.1)
+        );
+        border: 2px solid var(--yellow);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .stat-card {
+        background: var(--card-bg);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--accent-color);
+        display: block;
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+      }
+
+      /* Image Gallery Styles */
+      .image-gallery {
+        margin: 1.5rem 0;
+      }
+
+      .gallery-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+
+      .gallery-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .youtube-link {
+        background: #ff0000;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .youtube-link:hover {
+        background: #cc0000;
+        transform: translateY(-2px);
+      }
+
+      .images-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+      }
+
+      .image-item {
+        background: var(--bg-secondary);
+        border-radius: 0.75rem;
+        overflow: hidden;
+        transition: var(--transition);
+      }
+
+      .image-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .image-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .image-item img:hover {
+        opacity: 0.9;
+        transform: scale(1.02);
+      }
+
+      /* Modal/Lightbox Styles */
+      .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        animation: fadeIn 0.3s ease;
+      }
+
+      .image-modal.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+        margin: auto;
+        animation: zoomIn 0.3s ease;
+      }
+
+      .modal-image {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 0.5rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      .modal-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+      }
+
+      .modal-caption {
+        position: absolute;
+        bottom: -60px;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        text-align: center;
+      }
+
+      .modal-caption h4 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .modal-caption p {
+        margin: 0;
+        font-size: 0.9rem;
+        opacity: 0.9;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes zoomIn {
+        from { 
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to { 
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .image-caption {
+        padding: 1rem;
+      }
+
+      .image-caption h4 {
+        color: var(--text-primary);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .image-caption p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      @media (max-width: 768px) {
+        .progress-item {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+
+        .progress-bar {
+          width: 100%;
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .images-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-header {
+          flex-direction: column;
+          gap: 1rem;
+          align-items: stretch;
+        }
+
+        .youtube-link {
+          text-align: center;
+          justify-content: center;
+        }
+
+        .modal-content {
+          max-width: 95%;
+          max-height: 95%;
+        }
+
+        .modal-close {
+          top: -35px;
+          font-size: 1.5rem;
+          width: 35px;
+          height: 35px;
+        }
+
+        .modal-caption {
+          bottom: -80px;
+          padding: 0.75rem;
+        }
+
+        .modal-caption h4 {
+          font-size: 1rem;
+        }
+
+        .modal-caption p {
+          font-size: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <span class="logo-text">ANGELIC GROOVE</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+        <a href="roadmap.html" class="nav-link">Roadmap</a>
+        <a href="other-games.html" class="nav-link">Games</a>
+        <a href="devlog.html" class="nav-link active">DevLog</a>
+      </div>
+      <button class="theme-toggle" id="theme-toggle">
+        <i class="fa-regular fa-sun sun-icon"></i>
+        <i class="fa-regular fa-moon moon-icon hidden"></i>
+      </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container">
+      <!-- Header -->
+      <section class="header">
+        <h1 class="page-title">Development Log</h1>
+        <p class="page-subtitle">
+          Follow the my journey of creating "The Heritage Game". Name is not final.
+          From concept to code, technical challenges, cultural research, and
+          creative decisions this project, I will be discussing and detailing
+          all of them here.
+        </p>
+      </section>
+
+      <!-- Current Development Stats -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-number">15%</span>
+          <span class="stat-label">Core Systems In Development</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">2 Weeks</span>
+          <span class="stat-label">Since Development Started</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">Unity</span>
+          <span class="stat-label">Game Engine</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">PC</span>
+          <span class="stat-label">Target Platform</span>
+        </div>
+      </section>
+
+      <!-- Latest Development Entry -->
+      <div class="devlog-entry">
+        <div class="devlog-date">
+          <i class="fas fa-calendar"></i>
+          September 7, 2025 - Week 2 of UI Integration
+        </div>
+        <h2 class="devlog-title">
+          🎯 UI System Integration: HUD and Feedback Systems
+        </h2>
+        <div class="devlog-content">
+          <p>
+            Currently in the second week of UI system development, focusing on
+            the initial and very basic HUD components and player feedback
+            systems. The Movement and Combat framework I completed last week is
+            now being expanded with charging indicators, pickup notifications,
+            and combat feedback.
+          </p>
+        </div>
+
+        <div class="progress-section">
+          <h3
+            style="
+              color: var(--text-primary);
+              margin-bottom: 1rem;
+              font-weight: 600;
+            "
+          >
+            Week 2 Progress Tracking
+          </h3>
+
+          <div class="progress-item">
+            <div>
+              <strong>Bow Charging Feedback</strong>
+              <br /><small
+                >Bow charging visual feedback integration. I might keep it the
+                existing weapon system I have.</small
+              >
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill in-progress" style="width: 80%"></div>
+            </div>
+          </div>
+
+          <div class="progress-item">
+            <div>
+              <strong>Pickup System</strong>
+              <br /><small
+                >Collection feedback with rarity outline styling</small
+              >
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill in-progress" style="width: 45%"></div>
+            </div>
+          </div>
+
+          <div class="progress-item">
+            <div>
+              <strong>Feedback System</strong>
+              <br /><small
+                >Attack impact and damage feedback. Making the very basics ready
+                for when I implement the Health and Damage system.
+              </small>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill in-progress" style="width: 10%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-stack">
+          <span class="tech-tag">C# Scripting</span>
+          <span class="tech-tag">DOTween Animation</span>
+          <span class="tech-tag">Canvas Management</span>
+          <span class="tech-tag">Event Systems</span>
+          <span class="tech-tag">Performance Optimization</span>
+        </div>
+
+        <!-- Week 2 Image Gallery -->
+        <div class="image-gallery">
+          <div class="gallery-header">
+            <h3 class="gallery-title">📸 Week 2 Development Screenshots</h3>
+            <a href="#" class="youtube-link" target="_blank">
+              <i class="fab fa-youtube"></i> Watch Progress Video
+            </a>
+          </div>
+          <div class="images-grid">
+            <div class="image-item">
+              <img src="images/Week 2/Devlog Image 1.png" alt="Week 2 Development Progress - Image 1">
+              <div class="image-caption">
+                <h4>Bow Charge Camera</h4>
+                <p>Setting up a different VCAM specifically for Bows and testing animation override. Also 
+                    testing the UI integrations.
+                </p>
+              </div>
+            </div>
+            <div class="image-item">
+              <img src="images/Week 2/Devlog Image 2.png" alt="Week 2 Development Progress - Image 2">
+              <div class="image-caption">
+                <h4>First Build</h4>
+                <p>Making the first executable build to test initial performance. Works flawlessly.</p>
+            </div>
+            </div>
+            <div class="image-item">
+              <img src="images/Week 2/Devlog Image 3.png" alt="Week 2 Development Progress - Image 3">
+              <div class="image-caption">
+                <h4>Develpment Logs</h4>
+                <p>I use the Debug.Log() statement quite a lot to verify that sections of my code runs and without fail.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 1 Development Entry -->
+      <div class="devlog-entry">
+        <div class="devlog-date">
+          <i class="fas fa-calendar"></i>
+          August 31, 2025 - Week 1 of Development
+        </div>
+        <h2 class="devlog-title">Foundation Systems: Movement and Combat Framework</h2>
+        <div class="devlog-content">
+          <p>
+            The first week I focused on establishing the core foundation systems that would serve as the backbone 
+            for all future development. This included implementing the basis of the advanced movement system with tank controls, 
+            setting up the combat framework, and creating the basic pickup system architecture. I did these, in my notebook. :)
+          </p>
+        </div>
+
+        <div class="progress-section">
+          <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-weight: 600;">Week 1 Completed Systems</h3>
+          
+          <div class="progress-item">
+            <div>
+              <strong>Movement System</strong>
+              <br><small>Tank controls with dash-roll.</small>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill complete" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <div class="progress-item">
+            <div>
+              <strong>Combat Framework</strong>
+              <br><small>Basic weapon system and charging animation layers</small>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill complete" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <div class="progress-item">
+            <div>
+              <strong>Pickup System Architecture</strong>
+              <br><small>Foundation for inventory management and item collection</small>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill complete" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <div class="progress-item">
+            <div>
+              <strong>Camera Integration</strong>
+              <br><small>Cinemachine setup with multiple camera modes</small>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill complete" style="width: 100%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-stack">
+          <span class="tech-tag">Unity Engine</span>
+          <span class="tech-tag">C# Scripting</span>
+          <span class="tech-tag">Cinemachine</span>
+          <span class="tech-tag">Animation Systems</span>
+          <span class="tech-tag">Character Controller Movement Physics</span>
+        </div>
+
+        <!-- Week 1 Image Gallery -->
+        <div class="image-gallery">
+          <div class="gallery-header">
+            <h3 class="gallery-title">📸 Week 1 Development Screenshots</h3>
+          </div>
+          <div class="images-grid">
+            <div class="image-item">
+              <img src="images/Week 1/Devlog Image 1.png" alt="Week 1 Development - Image 1">
+              <div class="image-caption">
+                <h4>Initial PLayer Character Setup</h4>
+                <p>Using Unity's Character Controller and building off of it to make the Player Movement System</p>
+              </div>
+            </div>
+            <div class="image-item">
+              <img src="images/Week 1/Devlog Image 2.png" alt="Week 1 Development - Image 2">
+              <div class="image-caption">
+                <h4>Weapon System Initial Setup</h4>
+                <p>Importing placeholder Bow pickup model.</p>
+              </div>
+            </div>
+            <div class="image-item">
+              <img src="images/Week 1/Devlog Image 3.png" alt="Week 1 Development - Image 3">
+              <div class="image-caption">
+                <h4>Animator Layout</h4>
+                <p>I have tried optimizing the layout of the Animator to reuse as much as possible and reduce transition calls.
+                     Just don't look at the Parameter section...
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game Overview Entry -->
+      <div class="devlog-entry">
+        <div class="devlog-date">
+          <i class="fas fa-gamepad"></i>
+          Project Overview - "The Heritage Game"
+        </div>
+        <h2 class="devlog-title">🏛️ Cultural ARPG: The Heritage Game</h2>
+        <div class="devlog-content">
+          <p>
+            An Open World action RPG celebrating Ghanaian cultural heritage through video
+            games. Players embark on a spiritual and historical journeys,
+            recounting the history of celebrated historical figures.
+          </p>
+        </div>
+
+        <div class="cultural-highlight">
+          <h3 style="color: var(--text-primary); margin-bottom: 1rem">
+            🌍 Cultural Authenticity Focus
+          </h3>
+          <p style="color: var(--text-secondary); line-height: 1.6">
+            I try to have every aspect of the game be designed with cultural
+            sensitivity and authenticity in mind. For now, the figure I have
+            chosen to have the game be based on is Komfo Anokye. I have done
+            some very basic "research" (reading through Social Studies books) to
+            gauge the level of complexity the game will require. For the roadmap
+            that I have, my technical prowess is enough.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">⚔️</div>
+            <div class="feature-title">Spiritual Combat</div>
+            <div class="feature-status status-planned">Planned</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💼</div>
+            <div class="feature-title">Inventory System</div>
+            <div class="feature-status status-progress">In Progress</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🏃</div>
+            <div class="feature-title">Advanced Movement</div>
+            <div class="feature-status status-complete">Complete</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <div class="feature-title">UI Integration</div>
+            <div class="feature-status status-progress">In Progress</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎵</div>
+            <div class="feature-title">Traditional Audio</div>
+            <div class="feature-status status-planned">
+              Planned (probably last)
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🗺️</div>
+            <div class="feature-title">World Environments</div>
+            <div class="feature-status status-planned">
+              Planned (Might be a problem)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technical Architecture Entry -->
+      <div class="devlog-entry">
+        <div class="devlog-date">
+          <i class="fas fa-code"></i>
+          Technical Deep Dive
+        </div>
+        <h2 class="devlog-title">🔧 System Architecture & Implementation</h2>
+        <div class="devlog-content">
+          <p>
+            The game features a sophisticated technical architecture of my Unity
+            game development knowledge and prowess. I am applying all of my
+            strength and technical know-how into this one. For now though, the
+            character assets and animations you see in the pictures and videos
+            are not mine. The ones you see are placeholders. They are from Realm
+            Royale(RIP) and belong to Hi-Rez Studios. I will be making a
+            character, when I start with modeling and creating my own weapon and
+            character models. That being said though, I am terrible at making
+            art, so if you have a design in mind, please do not hesitate to let
+            me see it.
+          </p>
+        </div>
+
+        <div class="progress-section">
+          <h3
+            style="
+              color: var(--text-primary);
+              margin-bottom: 1rem;
+              font-weight: 600;
+            "
+          >
+            Development Phases Status
+          </h3>
+
+          <div class="progress-item">
+            <div>
+              <strong>Phase 1: Core Systems</strong>
+              <br /><small>Combat, movement, pickup, animation systems</small>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill complete" style="width: 90%"></div>
+            </div>
+          </div>
+
+          <div class="progress-item">
+            <div>
+              <strong>Phase 2: UI Integration</strong>
+              <br /><small>HUD, inventory, feedback, and menu systems</small>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill in-progress" style="width: 25%"></div>
+            </div>
+          </div>
+
+          <div class="progress-item">
+            <div>
+              <strong>Phase 3: World Building</strong>
+              <br /><small>Environments, audio, and content creation</small>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill planned" style="width: 10%"></div>
+            </div>
+          </div>
+
+          <div class="progress-item">
+            <div>
+              <strong>Phase 4: Polish & Launch</strong>
+              <br /><small
+                >Optimization, testing, and release preparation</small
+              >
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill planned" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <h4 style="color: var(--text-primary); margin: 1.5rem 0 1rem 0">
+          ✅ Completed Systems
+        </h4>
+        <ul
+          style="
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-left: 1.5rem;
+          "
+        >
+          <li>
+            <strong>Base Combat System Backend:</strong> The very core of the Combat System, I have done.</li>
+          <li>
+            <strong>Base Pickup System:</strong> Inventory Management with
+            rarity-based outlines.
+          </li>
+          <li>
+            <strong>Base Animation System:</strong> Weight-based animations involving Crouching, Sprinting and Walking.</li>
+          <li>
+            <strong>Movement System:</strong> Advanced tank controls with dash-roll.</li>
+          <li>
+            <strong>Camera System:</strong> Cinemachine integration with multiple camera modes.</li>
+        </ul>
+
+        <div class="tech-stack">
+          <span class="tech-tag">Unity Engine</span>
+          <span class="tech-tag">C# Scripting</span>
+          <span class="tech-tag">Cinemachine</span>
+          <span class="tech-tag">DOTween</span>
+          <span class="tech-tag">Cultural Research</span>
+        </div>
+      </div>
+
+      <!-- Survey Results Integration Entry -->
+      <div class="devlog-entry">
+        <div class="devlog-date">
+          <i class="fas fa-chart-line"></i>
+          August 2025 - Data Analysis Complete
+        </div>
+        <h2 class="devlog-title">📊 From Survey Data to Game Design</h2>
+        <div class="devlog-content">
+          <p>
+            After months of collecting responses community through the GAVG survey, I've analyzed the data and
+            extracted key insights that directly influence game design decisions. Took me months to create the
+            development framework based on the community's preferences for action RPGs, cultural storytelling, and traditional aesthetics validated my development
+            direction.
+          </p>
+
+          <h4 style="color: var(--text-primary); margin: 1.5rem 0 1rem 0">
+            Key Survey Insights Implemented:
+          </h4>
+          <ul
+            style="
+              color: var(--text-secondary);
+              line-height: 1.8;
+              margin-left: 1.5rem;
+            "
+          >
+            <li>
+              <strong>Genre Preference:</strong> Action RPG mechanics with
+              cultural storytelling. (Only one story so far)
+            </li>
+            <li>
+              <strong>Visual Style:</strong> Authentic cultural aesthetics over
+              generic fantasy.
+            </li>
+            <li>
+              <strong>Gameplay Elements:</strong> Spiritual/magical combat
+              systems. Asset store will come in handy.
+            </li>
+          </ul>
+        </div>
+
+        <div class="cultural-highlight">
+          <h3 style="color: var(--text-primary); margin-bottom: 1rem">
+            🎯 Design Validation
+          </h3>
+          <p style="color: var(--text-secondary); line-height: 1.6">
+            The survey results confirmed that my approach of combining
+            authentic cultural elements with engaging ARPG mechanics aligns
+            perfectly with community desires. This validation allowed me to
+            proceed with confidence into the development phase.
+          </p>
+        </div>
+      </div>
+
+      <div class="devlog-entry">
+        <div class="devlog-date">
+          <i class="fas fa-road"></i>
+          Looking Ahead - 2026/2027 Target Release
+        </div>
+        <h2 class="devlog-title">🚀 Next Steps & Release Timeline</h2>
+        <div class="devlog-content">
+          <p>
+            As I've already stated, I will be entering final year UCC schooling. Alongside developing
+            2 other Paladins fan games, I am going to be ultra busy. But that is not a deterent. I will
+             focus the next 2 months (vacation) on this game and one other to maximize effort. But I am
+              starting Internship tomorrow so development time will be cut by 80%....
+              (╯°□°）╯︵ ┻━┻
+          </p>
+
+          <h4 style="color: var(--text-primary); margin: 1.5rem 0 1rem 0">
+            Upcoming Milestones:
+          </h4>
+          <ul
+            style="
+              color: var(--text-secondary);
+              line-height: 1.8;
+              margin-left: 1.5rem;
+            "
+          >
+            <li>
+              <strong>2025:</strong> Complete UI integration and menu systems
+            </li>
+            <li>
+              <strong>2026/2027:</strong> Environment creation and world building
+            </li>
+            <li>
+              <strong>2026/2027:</strong> Traditional audio integration and voice
+              work
+            </li>
+            <li>
+              <strong>2026/2027:</strong> Beta testing with community members
+            </li>
+            <li>
+              <strong>2026/2027:</strong> Polish, optimization, and release
+              preparation
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Theme Toggle
+        const themeToggle = document.getElementById("theme-toggle");
+        const sunIcon = document.querySelector(".sun-icon");
+        const moonIcon = document.querySelector(".moon-icon");
+
+        // Theme management
+        const initializeTheme = () => {
+          try {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme) {
+              document.documentElement.setAttribute("data-theme", savedTheme);
+              updateThemeUI(savedTheme);
+            } else {
+              const prefersDark = window.matchMedia(
+                "(prefers-color-scheme: dark)"
+              ).matches;
+              const initialTheme = prefersDark ? "dark" : "light";
+              document.documentElement.setAttribute("data-theme", initialTheme);
+              updateThemeUI(initialTheme);
+            }
+          } catch (error) {
+            console.error("Error accessing localStorage:", error);
+          }
+        };
+
+        const updateThemeUI = (theme) => {
+          if (theme === "dark") {
+            sunIcon.classList.add("hidden");
+            moonIcon.classList.remove("hidden");
+          } else {
+            moonIcon.classList.add("hidden");
+            sunIcon.classList.remove("hidden");
+          }
+        };
+
+        // Theme toggle functionality
+        themeToggle.addEventListener("click", function () {
+          try {
+            const currentTheme =
+              document.documentElement.getAttribute("data-theme");
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+            document.documentElement.setAttribute("data-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+            updateThemeUI(newTheme);
+          } catch (error) {
+            console.error("Error saving theme preference:", error);
+          }
+        });
+
+        // Scroll animations for devlog entries
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+          }
+        );
+
+        document.querySelectorAll(".devlog-entry").forEach((entry) => {
+          entry.style.opacity = "0";
+          entry.style.transform = "translateY(30px)";
+          entry.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+          observer.observe(entry);
+        });
+
+        // Animate progress bars
+        const animateProgressBars = () => {
+          document.querySelectorAll(".progress-fill").forEach((bar) => {
+            const width = bar.style.width;
+            bar.style.width = "0%";
+            setTimeout(() => {
+              bar.style.width = width;
+            }, 500);
+          });
+        };
+
+        // Animate progress bars when page loads
+        setTimeout(animateProgressBars, 1000);
+
+        // Image Modal functionality
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalClose = document.querySelector('.modal-close');
+
+        // Add click listeners to all gallery images
+        document.querySelectorAll('.image-item img').forEach(img => {
+          img.addEventListener('click', function() {
+            const caption = this.closest('.image-item').querySelector('.image-caption');
+            const title = caption.querySelector('h4').textContent;
+            const description = caption.querySelector('p').textContent;
+            
+            modalImage.src = this.src;
+            modalImage.alt = this.alt;
+            modalTitle.textContent = title;
+            modalDescription.textContent = description;
+            
+            imageModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          });
+        });
+
+        // Close modal functionality
+        const closeModal = () => {
+          imageModal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        };
+
+        modalClose.addEventListener('click', closeModal);
+        
+        // Close modal when clicking outside the image
+        imageModal.addEventListener('click', function(e) {
+          if (e.target === imageModal) {
+            closeModal();
+          }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && imageModal.classList.contains('active')) {
+            closeModal();
+          }
+        });
+
+        // Initialize theme
+        initializeTheme();
+      });
+    </script>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+      <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <img id="modalImage" class="modal-image" src="" alt="">
+        <div class="modal-caption">
+          <h4 id="modalTitle"></h4>
+          <p id="modalDescription"></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
